@@ -1,0 +1,3238 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>DASHBOARD TFG</title>
+		<meta name="description" content="description">
+		<meta name="author" content="DevOOPS">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link href="plugins/bootstrap/bootstrap.css" rel="stylesheet">
+		<link href="plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet">
+		<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+		<link href='http://fonts.googleapis.com/css?family=Righteous' rel='stylesheet' type='text/css'>
+		<link href="plugins/fancybox/jquery.fancybox.css" rel="stylesheet">
+		<link href="plugins/fullcalendar/fullcalendar.css" rel="stylesheet">
+		<link href="plugins/xcharts/xcharts.min.css" rel="stylesheet">
+		<link href="plugins/select2/select2.css" rel="stylesheet">
+		<link href="css/style.css" rel="stylesheet">
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+		<!--<script src="http://code.jquery.com/jquery.js"></script>-->
+		<script src="plugins/jquery/jquery-2.1.0.min.js"></script>
+		<script src="plugins/jquery-ui/jquery-ui.min.js"></script>
+		<!-- Include all compiled plugins (below), or include individual files as needed -->
+		<script src="plugins/bootstrap/bootstrap.min.js"></script>
+		<script src="plugins/justified-gallery/jquery.justifiedgallery.min.js"></script>
+		<script src="plugins/tinymce/tinymce.min.js"></script>
+		<script src="plugins/tinymce/jquery.tinymce.min.js"></script>
+		<!-- All functions for this theme + document.ready processing -->
+		<script src="js/devoops.js"></script>
+		
+<!-- 		<script type="text/javascript">
+			// Run Datables plugin and create 3 variants of settings
+			function AllTables(){
+				//TestTable1();
+				//TestTable2();
+				TestTable3();
+				LoadSelect2Script(MakeSelect2);
+			}
+			function MakeSelect2(){
+				$('select').select2();
+				$('.dataTables_filter').each(function(){
+					$(this).find('label input[type=text]').attr('placeholder', 'Search');
+				});
+			}
+			$(document).ready(function() {
+				// Load Datatables and run plugin on tables 
+				LoadDataTablesScripts(AllTables);
+				// Add Drag-n-Drop feature
+				WinMove();
+			});
+		</script> -->
+		<script type="text/javascript">
+			// Script Necesario para los chart
+			function DrawAllxCharts(){
+				//xGraph1();
+				//xGraph2();
+				//xGraph3();
+			}
+			$(document).ready(function() {
+				// Load required scripts and callback to draw
+				LoadXChartScript(DrawAllxCharts);
+				// Required for correctly resize charts, when boxes expand
+				var graphxChartsResize;
+				$(".box").resize(function(event){
+					event.preventDefault();
+					clearTimeout(graphxChartsResize);
+					graphxChartsResize = setTimeout(DrawAllxCharts, 500);
+				});
+				WinMove();
+			});
+		</script>
+		<!-- Javascript con las funciones de pintar -->
+		<script type="text/javascript" src="js/funcionespintar.js"></script>
+		
+		<!-- Javascript con las funciones de masajear los datos -->
+		<script type="text/javascript" src="js/funcionesdatos.js"></script>
+		
+		<!-- Javascript con las funciones necesarias para la parte de demografia -->
+		<script type="text/javascript" src="js/funcionesdemografia.js"></script>
+		
+		<!-- Javascript con las funciones eventuales de la seccion empresa -->
+		<script type="text/javascript" src="js/funcionempresaevento.js"></script>
+		
+		<!--  Javascript con las funciones eventuales de la seccion demografia -->
+		<script type="text/javascript" src="js/funcionesdemografiaevento.js"></script>
+		
+		<!--  Javascript para cargar un fichero -->
+		<script type="text/javascript" src="js/cargafichero.js"></script>
+		
+		<!--  Javascript para los botones -->
+		<script type="text/javascript" src="js/funcionbotones.js"></script>	
+		
+		<script type="text/javascript" src="js/messageResource.min.js"></script>	
+		
+		<!-- Javascript con el recorredio principal -->
+		<script type="text/javascript" src="js/principal.js"></script>
+		
+		
+		
+		<!-- Libreria Hicharts -->
+		<script type='text/javascript' src="file:///F:/Archivos%20de%20Javier/Universidad/4%C2%BA%20Curso/Biblioteca%20TFG/Highcharts-4.0.4%281%29/js/highcharts.js"></script>
+		<!-- Libreria Hicharts 3D -->
+		<script type='text/javascript' src="file:///F:/Archivos%20de%20Javier/Universidad/4%C2%BA%20Curso/Biblioteca%20TFG/Highcharts-4.0.4%281%29/js/highcharts-3d.js"></script>
+		<!-- Libreria Expoting -->
+		<script type='text/javascript' src="file:///F:/Archivos%20de%20Javier/Universidad/4%C2%BA%20Curso/Biblioteca%20TFG/Highcharts-4.0.4%281%29/js/modules/exporting.js"></script>
+		<!-- Libreria Data -->
+		<script type='text/javascript' src="file:///F:/Archivos%20de%20Javier/Universidad/4%C2%BA%20Curso/Biblioteca%20TFG/Highcharts-4.0.4%281%29/js/modules/data.js"></script>
+		<!-- Libreria drilldown-->
+		<script type='text/javascript' src="file:///F:/Archivos%20de%20Javier/Universidad/4%C2%BA%20Curso/Biblioteca%20TFG/Highcharts-4.0.4%281%29/js/modules/drilldown.js"></script>
+		<!-- Libreria Hicharts More -->
+		<script type='text/javascript' src="file:///F:/Archivos%20de%20Javier/Universidad/4%C2%BA%20Curso/Biblioteca%20TFG/Highcharts-4.0.4%281%29/js/highcharts-more.js"></script>
+		
+		
+		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+		<!--[if lt IE 9]>
+				<script src="http://getbootstrap.com/docs-assets/js/html5shiv.js"></script>
+				<script src="http://getbootstrap.com/docs-assets/js/respond.min.js"></script>
+		<![endif]-->
+	</head>
+<body>
+<!--Start Header-->
+<div id="screensaver">
+	<canvas id="canvas"></canvas>
+	<i class="fa fa-lock" id="screen_unlock"></i>
+</div>
+<div id="modalbox">
+	<div class="devoops-modal">
+		<div class="devoops-modal-header">
+			<div class="modal-header-name">
+				<span>Basic table</span>
+			</div>
+			<div class="box-icons">
+				<a class="close-link">
+					<i class="fa fa-times"></i>
+				</a>
+			</div>
+		</div>
+		<div class="devoops-modal-inner">
+		</div>
+		<div class="devoops-modal-bottom">
+		</div>
+	</div>
+</div>
+<header class="navbar">
+	<div class="container-fluid expanded-panel">
+		<div class="row">
+			<div id="logo" class="col-xs-12 col-sm-2">
+				<a href="index.html">DASH SJ</a>
+			</div>
+			<div id="top-panel" class="col-xs-12 col-sm-10">
+				<!-- Primary large button --> 
+				 <div class="row">
+					<div class="col-xs-8 col-sm-4 col-md-offset-10">
+						<button id="regress" type="button" class="btn btn-default btn-lg ">Volver</button>
+					</div>
+				</div>
+					<!--<div class="col-xs-4 col-sm-8 top-panel-right">
+						<ul class="nav navbar-nav pull-right panel-menu">
+							<li class="hidden-xs">
+								<a href="index.html" class="modal-link">
+									<i class="fa fa-bell"></i>
+									<span class="badge">7</span>
+								</a>
+							</li>
+							<li class="hidden-xs">
+								<a class="ajax-link" href="ajax/calendar.html">
+									<i class="fa fa-calendar"></i>
+									<span class="badge">7</span>
+								</a>
+							</li>
+							<li class="hidden-xs">
+								<a href="ajax/page_messages.html" class="ajax-link">
+									<i class="fa fa-envelope"></i>
+									<span class="badge">7</span>
+								</a>
+							</li>
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle account" data-toggle="dropdown">
+									<div class="avatar">
+										<img src="img/avatar.jpg" class="img-rounded" alt="avatar" />
+									</div>
+									<i class="fa fa-angle-down pull-right"></i>
+									<div class="user-mini pull-right">
+										<span class="welcome">Welcome,</span>
+										<span>Jane Devoops</span>
+									</div>
+								</a>
+								<ul class="dropdown-menu">
+									<li>
+										<a href="#">
+											<i class="fa fa-user"></i>
+											<span>Profile</span>
+										</a>
+									</li>
+									<li>
+										<a href="ajax/page_messages.html" class="ajax-link">
+											<i class="fa fa-envelope"></i>
+											<span>Messages</span>
+										</a>
+									</li>
+									<li>
+										<a href="ajax/gallery_simple.html" class="ajax-link">
+											<i class="fa fa-picture-o"></i>
+											<span>Albums</span>
+										</a>
+									</li>
+									<li>
+										<a href="ajax/calendar.html" class="ajax-link">
+											<i class="fa fa-tasks"></i>
+											<span>Tasks</span>
+										</a>
+									</li>
+									<li>
+										<a href="#">
+											<i class="fa fa-cog"></i>
+											<span>Settings</span>
+										</a>
+									</li>
+									<li>
+										<a href="#">
+											<i class="fa fa-power-off"></i>
+											<span>Logout</span>
+										</a>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</div> -->
+			</div>
+		</div>
+	</div>
+</header>
+<!--End Header-->
+<!--Start Container-->
+<div id="main" class="container-fluid">
+	<div class="row">
+		<div id="sidebar-left" class="col-xs-2 col-sm-2">
+			<ul class="nav main-menu">
+				<li>
+					<a href="#" id="MenushowGeneral">
+						<i class="fa fa-dashboard"></i>
+						<span class="hidden-xs">General</span>
+					</a>
+				</li>
+				<li class="dropdown">
+					<a href="#" id="MenushowBusiness"class="dropdown-toggle">
+						<i class="fa fa-bar-chart-o"></i>
+						<span class="hidden-xs">Business</span>
+					</a>
+<!-- 					<ul class="dropdown-menu">
+						<li><a class="ajax-link" href="ajax/charts_xcharts.html">xCharts</a></li>
+						<li><a class="ajax-link" href="ajax/charts_flot.html">Flot Charts</a></li>
+						<li><a class="ajax-link" href="ajax/charts_google.html">Google Charts</a></li>
+						<li><a class="ajax-link" href="ajax/charts_morris.html">Morris Charts</a></li>
+						<li><a class="ajax-link" href="ajax/charts_coindesk.html">CoinDesk realtime</a></li>
+					</ul> -->
+				</li>
+				<li class="dropdown">
+					<a href="#" id="MenushowDemographic"class="dropdown-toggle">
+						<i class="fa fa-table"></i>
+						 <span class="hidden-xs">Demographic</span>
+					</a>
+<!-- 					<ul class="dropdown-menu">
+						<li><a class="ajax-link" href="ajax/tables_simple.html">Simple Tables</a></li>
+						<li><a class="ajax-link" href="ajax/tables_datatables.html">Data Tables</a></li>
+						<li><a class="ajax-link" href="ajax/tables_beauty.html">Beauty Tables</a></li>
+					</ul> -->
+				</li>
+				<li class="dropdown">
+					<a href="#" id="MenushowSCM" class="dropdown-toggle">
+						<i class="fa fa-pencil-square-o"></i>
+						 <span class="hidden-xs">SCM</span>
+					</a>
+<!-- 					<ul class="dropdown-menu">
+						<li><a class="ajax-link" href="ajax/forms_elements.html">Elements</a></li>
+						<li><a class="ajax-link" href="ajax/forms_layouts.html">Layouts</a></li>
+						<li><a class="ajax-link" href="ajax/forms_file_uploader.html">File Uploader</a></li>
+					</ul> -->
+				</li>
+				<li class="dropdown">
+					<a href="#" id="MenushowSCR" class="dropdown-toggle">
+						<i class="fa fa-desktop"></i>
+						 <span class="hidden-xs">SCR</span>
+					</a>
+<!-- 					<ul class="dropdown-menu">
+						<li><a class="ajax-link" href="ajax/ui_grid.html">Grid</a></li>
+						<li><a class="ajax-link" href="ajax/ui_buttons.html">Buttons</a></li>
+						<li><a class="ajax-link" href="ajax/ui_progressbars.html">Progress Bars</a></li>
+						<li><a class="ajax-link" href="ajax/ui_jquery-ui.html">Jquery UI</a></li>
+						<li><a class="ajax-link" href="ajax/ui_icons.html">Icons</a></li>
+					</ul> -->
+				</li>
+				<li class="dropdown">
+					<a href="#" id="MenushowITS" class="dropdown-toggle">
+						<i class="fa fa-list"></i>
+						 <span class="hidden-xs">ITS</span>
+					</a>
+<!-- 					<ul class="dropdown-menu">
+						<li><a href="ajax/page_login.html">Login</a></li>
+						<li><a href="ajax/page_register.html">Register</a></li>
+						<li><a id="locked-screen" class="submenu" href="ajax/page_locked.html">Locked Screen</a></li>
+						<li><a class="ajax-link" href="ajax/page_contacts.html">Contacts</a></li>
+						<li><a class="ajax-link" href="ajax/page_feed.html">Feed</a></li>
+						<li><a class="ajax-link add-full" href="ajax/page_messages.html">Messages</a></li>
+						<li><a class="ajax-link" href="ajax/page_pricing.html">Pricing</a></li>
+						<li><a class="ajax-link" href="ajax/page_invoice.html">Invoice</a></li>
+						<li><a class="ajax-link" href="ajax/page_search.html">Search Results</a></li>
+						<li><a class="ajax-link" href="ajax/page_404.html">Error 404</a></li>
+						<li><a href="ajax/page_500.html">Error 500</a></li>
+					</ul> -->
+				</li>
+				<li class="dropdown">
+					<a href="#" id="MenushowQAM" class="dropdown-toggle">
+						<i class="fa fa-map-marker"></i>
+						<span class="hidden-xs">QAM</span>
+					</a>
+<!-- 					<ul class="dropdown-menu">
+						<li><a class="ajax-link" href="ajax/maps.html">OpenStreetMap</a></li>
+						<li><a class="ajax-link" href="ajax/map_fullscreen.html">Fullscreen map</a></li>
+					</ul> -->
+				</li>
+			
+				<li class="dropdown">
+					<a href="#" id="MenushowMLS" class="dropdown-toggle">
+						<i class="fa fa-picture-o"></i>
+						 <span class="hidden-xs">MLS</span>
+					</a>
+<!-- 					<ul class="dropdown-menu">
+						<li><a class="ajax-link" href="ajax/gallery_simple.html">Simple Gallery</a></li>
+						<li><a class="ajax-link" href="ajax/gallery_flickr.html">Flickr Gallery</a></li>
+					</ul> -->
+				</li>
+				<li class="dropdown">
+					 <a href="#" id="Menuabstract" class="dropdown-toggle">
+						 <i class="fa fa-font"></i>
+						 <span class="hidden-xs">Abstract</span>
+					</a>
+				</li>
+					<li class="dropdown">
+					 <a href="#" id="MenuCompInformation" class="dropdown-toggle">
+						 <i class="fa fa-info"></i>
+						 <span class="hidden-xs">Comp. Information</span>
+					</a>
+				</li>
+<!-- 				 <li>
+					<a class="ajax-link" href="ajax/calendar.html">
+						 <i class="fa fa-calendar"></i>
+						 <span class="hidden-xs">Calendar</span>
+					</a>
+				 </li> -->
+				<!-- <li class="dropdown">
+					<a href="#" class="dropdown-toggle">
+						<i class="fa fa-picture-o"></i>
+						 <span class="hidden-xs">Multilevel menu</span>
+					</a>
+					<ul class="dropdown-menu">
+						<li><a href="#">First level menu</a></li>
+						<li><a href="#">First level menu</a></li>
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle">
+								<i class="fa fa-plus-square"></i>
+								<span class="hidden-xs">Second level menu group</span>
+							</a>
+							<ul class="dropdown-menu">
+								<li><a href="#">Second level menu</a></li>
+								<li><a href="#">Second level menu</a></li>
+								<li class="dropdown">
+									<a href="#" class="dropdown-toggle">
+										<i class="fa fa-plus-square"></i>
+										<span class="hidden-xs">Three level menu group</span>
+									</a>
+									<ul class="dropdown-menu">
+										<li><a href="#">Three level menu</a></li>
+										<li><a href="#">Three level menu</a></li>
+										<li class="dropdown">
+											<a href="#" class="dropdown-toggle">
+												<i class="fa fa-plus-square"></i>
+												<span class="hidden-xs">Four level menu group</span>
+											</a>
+											<ul class="dropdown-menu">
+												<li><a href="#">Four level menu</a></li>
+												<li><a href="#">Four level menu</a></li>
+												<li class="dropdown">
+													<a href="#" class="dropdown-toggle">
+														<i class="fa fa-plus-square"></i>
+														<span class="hidden-xs">Five level menu group</span>
+													</a>
+													<ul class="dropdown-menu">
+														<li><a href="#">Five level menu</a></li>
+														<li><a href="#">Five level menu</a></li>
+														<li class="dropdown">
+															<a href="#" class="dropdown-toggle">
+																<i class="fa fa-plus-square"></i>
+																<span class="hidden-xs">Six level menu group</span>
+															</a>
+															<ul class="dropdown-menu">
+																<li><a href="#">Six level menu</a></li>
+																<li><a href="#">Six level menu</a></li>
+															</ul>
+														</li>
+													</ul>
+												</li>
+											</ul>
+										</li>
+										<li><a href="#">Three level menu</a></li>
+									</ul>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</li> -->
+			</ul>
+		</div>
+<!-- 		------------------------------------------------------------------------------------------------------
+		------------------------------------------------------------------------------------------------------
+		------------------------------------------------------------------------------------------------------
+		------------------------------------------------------------------------------------------------------ -->
+		<!--Start Content-->
+		<div id="content" class="col-xs-12 col-sm-10">
+<!-- 			 <div class="preloader">
+				<img src="img/devoops_getdata.gif" class="devoops-getdata" alt="preloader"/>
+			</div>  -->
+			<div id="ajax-content">
+			
+			<!-- Parte para redireccion -->
+<!-- 			<div class="row">
+				<div id="breadcrumb" class="col-md-12">
+					<ol class="breadcrumb">
+						<li><a href="index.html">Dashboard</a></li>
+						<li><a href="#">Charts</a></li>
+						<li><a href="#">xCharts</a></li>
+					</ol>
+				</div>
+			</div> -->
+			<!-- Creamos la pestaña de los tbs -->
+			<ul class="nav nav-tabs" id="showMenuTabGeneral" style="display: none">
+				<li class="active"><a data-toggle="tab" href="#tabSCM">SCM</a></li>
+				<li><a data-toggle="tab" href="#tabSCR">SCR</a></li>
+				<li><a data-toggle="tab" href="#tabITS">ITS</a></li>
+				<li><a data-toggle="tab" href="#tabQAM">QAM</a></li>
+				<li><a data-toggle="tab" href="#tabMLS">MLS</a></li>
+			</ul><br>
+
+<!-- 		------------------------------------------------------------------------------------------------------
+			----------------------------------------  SCM --------------------------------------------------------
+			------------------------------------------------------------------------------------------------------  -->
+			<div class="tab-content">
+			    <div id="tabSCM" class="tab-pane fade in active">
+					<div class="row" id="showSCMGeneral" style="display: none">
+						<div class="col-xs-12 col-sm-6">
+							<div class="box">
+								<div class="box-header">
+									<div class="box-name">
+										<i class="fa fa-search"></i>
+										<span>Commits SCM</span>
+									</div>
+									<div class="box-icons">
+										<a id="scm1" class="getPopPup" data-toggle="modal" data-target=".bs-example-modal-sm">
+											<i class="fa fa-info-circle"></i>
+										</a>
+										<a id="moreInformationSCM"class="">
+											<i class="fa fa-plus"></i>
+										</a>
+										<a class="collapse-link">
+											<i class="fa fa-chevron-up"></i>
+										</a>
+										<a class="expand-link">
+											<i class="fa fa-expand"></i>
+										</a>
+										<a class="close-link">
+											<i class="fa fa-times"></i>
+										</a>
+									</div>
+									<div class="no-move"></div>
+								</div>
+								<div class="box-content">
+									<div id="drawScmCommitsGeneral" style="height: 200px; width: 100%;"></div>
+								</div>
+							</div>
+						</div>
+						<div class="col-xs-12 col-sm-6">
+							<div class="box">
+								<div class="box-header">
+									<div class="box-name">
+										<i class="fa fa-search"></i>
+										<span>Authors SCM</span>
+									</div>
+									<div class="box-icons">
+										<a id="scm2"class="getPopPup" data-toggle="modal" data-target=".bs-example-modal-sm">
+											<i class="fa fa-info-circle"></i>
+										</a>
+										<a id="moreInformationSCMAbstract" class="">
+											<i class="fa fa-plus"></i>
+										</a>
+										<a class="collapse-link">
+											<i class="fa fa-chevron-up"></i>
+										</a>
+										<a class="expand-link">
+											<i class="fa fa-expand"></i>
+										</a>
+										<a class="close-link">
+											<i class="fa fa-times"></i>
+										</a>
+									</div>
+									<div class="no-move"></div>
+								</div>
+								<div class="box-content">
+									<div id="drawScmAuthorGeneral" style="height: 200px;"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row" id="showSCMGeneralRow2" style="display: none">
+						<div class="col-xs-12 col-sm-6">
+							<div class="box">
+								<div class="box-header">
+									<div class="box-name">
+										<i class="fa fa-search"></i>
+										<span> Commits Per Company SCM</span>
+									</div>
+									<div class="box-icons">
+										<a id="scm3"class="getPopPup" data-toggle="modal" data-target=".bs-example-modal-sm">
+											<i class="fa fa-info-circle"></i>
+										</a>
+										<a id="moreInformationSCMBusiness" class="">
+											<i class="fa fa-plus"></i>
+										</a>
+										<a class="collapse-link">
+											<i class="fa fa-chevron-up"></i>
+										</a>
+										<a class="expand-link">
+											<i class="fa fa-expand"></i>
+										</a>
+										<a class="close-link">
+											<i class="fa fa-times"></i>
+										</a>
+									</div>
+									<div class="no-move"></div>
+								</div>
+								<div class="box-content">
+									<div id="drawScmCommitsPerCompanyGeneral" style="height: 200px; width: 100%;"></div>
+								</div>
+							</div>
+						</div>
+						<div class="col-xs-12 col-sm-6">
+							<div class="box">
+								<div class="box-header">
+									<div class="box-name">
+										<i class="fa fa-search"></i>
+										<span> Demographic SCM</span>
+									</div>
+									<div class="box-icons">
+										<a id="scm4"class="getPopPup" data-toggle="modal" data-target=".bs-example-modal-sm">
+											<i class="fa fa-info-circle"></i>
+										</a>
+										<a id="moreInformationSCMDemographic" class="">
+											<i class="fa fa-plus"></i>
+										</a>
+										<a class="collapse-link">
+											<i class="fa fa-chevron-up"></i>
+										</a>
+										<a class="expand-link">
+											<i class="fa fa-expand"></i>
+										</a>
+										<a class="close-link">
+											<i class="fa fa-times"></i>
+										</a>
+									</div>
+									<div class="no-move"></div>
+								</div>
+								<div class="box-content">
+									<div id="drawScmDemographicGeneral" style="height: 200px;"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>	
+				
+				<div id="initialLoader" style="width: 100%; height: 100%; background-color:#e5e5e5; position:fixed; top:0; left:0; z-index:2147483647;">
+					<div style="background:#AE0035">
+						<img class="logo" src="/static/lib/images/logo-sgae.png" />
+					</div>
+					<br /><br />
+					<div class="loader">
+						<img src="loading.gif" style="margin-left: 450px"/>
+						<p style="width:100%; text-align: center;padding: 10px 0; color:black">Por favor, espere...</p>
+						<p style="width:100%; text-align: center;padding: 10px 0; color:black">Se estan cargando los estilos de la pagina esta operacion puede tardar aproximadamente 2 minutos...</p>
+					</div>
+				</div>
+<!-- 		------------------------------------------------------------------------------------------------------
+			----------------------------------------  SCR --------------------------------------------------------
+			------------------------------------------------------------------------------------------------------ -->
+				<div id="tabSCR" class="tab-pane fade in active">	
+					<div class="row"id="showSCRGeneral" style="display: none">
+						<div class="col-xs-12 col-sm-6">
+							<div class="box">
+								<div class="box-header">
+									<div class="box-name">
+										<i class="fa fa-search"></i>
+										<span>Reviews Merged SCR</span>
+									</div>
+									<div class="box-icons">
+										<a id="scr1"class="getPopPup" data-toggle="modal" data-target=".bs-example-modal-sm">
+											<i class="fa fa-info-circle"></i>
+										</a>
+										<a id="moreInformationSCR"class="">
+											<i class="fa fa-plus"></i>
+										</a>
+										<a class="collapse-link">
+											<i class="fa fa-chevron-up"></i>
+										</a>
+										<a class="expand-link">
+											<i class="fa fa-expand"></i>
+										</a>
+										<a class="close-link">
+											<i class="fa fa-times"></i>
+										</a>
+									</div>
+									<div class="no-move"></div>
+								</div>
+								<div class="box-content">
+									<div id="drawScrReviewsMergedGeneral" style="height: 200px; width: 100%;"></div>
+								</div>
+							</div>
+						</div>
+						<div class="col-xs-12 col-sm-6">
+							<div class="box">
+								<div class="box-header">
+									<div class="box-name">
+										<i class="fa fa-search"></i>
+										<span>Reviews Submmitters SCR</span>
+									</div>
+									<div class="box-icons">
+										<a id="scr2"class="getPopPup" data-toggle="modal" data-target=".bs-example-modal-sm">
+											<i class="fa fa-info-circle"></i>
+										</a>
+										<a id="moreInformationSCRAbstract" class="">
+											<i class="fa fa-plus"></i>
+										</a>
+										<a class="collapse-link">
+											<i class="fa fa-chevron-up"></i>
+										</a>
+										<a class="expand-link">
+											<i class="fa fa-expand"></i>
+										</a>
+										<a class="close-link">
+											<i class="fa fa-times"></i>
+										</a>
+									</div>
+									<div class="no-move"></div>
+								</div>
+								<div class="box-content">
+									<div id="drawScrReviewsSubmmittersGeneral" style="height: 200px;"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>	
+<!-- 		------------------------------------------------------------------------------------------------------
+			----------------------------------------  ITS --------------------------------------------------------
+			------------------------------------------------------------------------------------------------------  --> 		
+				<div id="tabITS" class="tab-pane fade in active">		
+					<div class="row" id="showITSGeneral" style="display: none">
+						<div class="col-xs-12 col-sm-6">
+							<div class="box">
+								<div class="box-header">
+									<div class="box-name">
+										<i class="fa fa-search"></i>
+										<span>Closed ITS </span>
+									</div>
+									<div class="box-icons">
+										<a id="its1"class="getPopPup" data-toggle="modal" data-target=".bs-example-modal-sm">
+											<i class="fa fa-info-circle"></i>
+										</a>
+										<a id="moreInformationITS"class="">
+											<i class="fa fa-plus"></i>
+										</a>
+										
+										<a class="collapse-link">
+											<i class="fa fa-chevron-up"></i>
+										</a>
+										<a class="expand-link">
+											<i class="fa fa-expand"></i>
+										</a>
+										<a class="close-link">
+											<i class="fa fa-times"></i>
+										</a>
+									</div>
+									<div class="no-move"></div>
+								</div>
+								<div class="box-content">
+									<div id="drawItsClosedGeneral" style="height: 200px; width: 100%;"></div>
+								</div>
+							</div>
+						</div>
+						<div class="col-xs-12 col-sm-6">
+							<div class="box">
+								<div class="box-header">
+									<div class="box-name">
+										<i class="fa fa-search"></i>
+										<span>Closer ITS</span>
+									</div>
+									<div class="box-icons">
+										<a id="its2"class="getPopPup" data-toggle="modal" data-target=".bs-example-modal-sm">
+											<i class="fa fa-info-circle"></i>
+										</a>
+										<a id="moreInformationITSAbstract" class="">
+											<i class="fa fa-plus"></i>
+										</a>
+										<a class="collapse-link">
+											<i class="fa fa-chevron-up"></i>
+										</a>
+										<a class="expand-link">
+											<i class="fa fa-expand"></i>
+										</a>
+										<a class="close-link">
+											<i class="fa fa-times"></i>
+										</a>
+									</div>
+									<div class="no-move"></div>
+								</div>
+								<div class="box-content">
+									<div id="drawItsCloserGeneral" style="height: 200px;"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row" id="showITSGeneralRow2" style="display: none">
+						<div class="col-xs-12 col-sm-6">
+							<div class="box">
+								<div class="box-header">
+									<div class="box-name">
+										<i class="fa fa-search"></i>
+										<span> Tickets Closed Per Company ITS</span>
+									</div>
+									<div class="box-icons">
+										<a id="its3"class="getPopPup" data-toggle="modal" data-target=".bs-example-modal-sm">
+											<i class="fa fa-info-circle"></i>
+										</a>
+										<a id="moreInformationITSBusiness"class="">
+											<i class="fa fa-plus"></i>
+										</a>
+										<a class="collapse-link">
+											<i class="fa fa-chevron-up"></i>
+										</a>
+										<a class="expand-link">
+											<i class="fa fa-expand"></i>
+										</a>
+										<a class="close-link">
+											<i class="fa fa-times"></i>
+										</a>
+									</div>
+									<div class="no-move"></div>
+								</div>
+								<div class="box-content">
+									<div id="drawItsTickedClosedPerComanyGeneral" style="height: 200px; width: 100%;"></div>
+								</div>
+							</div>
+						</div>
+						<div class="col-xs-12 col-sm-6">
+							<div class="box">
+								<div class="box-header">
+									<div class="box-name">
+										<i class="fa fa-search"></i>
+										<span> Demographic ITS</span>
+									</div>
+									<div class="box-icons">
+										<a id="its4"class="getPopPup" data-toggle="modal" data-target=".bs-example-modal-sm">
+											<i class="fa fa-info-circle"></i>
+										</a>
+										<a id="moreInformationITSDemographic"class="">
+											<i class="fa fa-plus"></i>
+										</a>
+										<a class="collapse-link">
+											<i class="fa fa-chevron-up"></i>
+										</a>
+										<a class="expand-link">
+											<i class="fa fa-expand"></i>
+										</a>
+										<a class="close-link">
+											<i class="fa fa-times"></i>
+										</a>
+									</div>
+									<div class="no-move"></div>
+								</div>
+								<div class="box-content">
+									<div id="drawItsDemographicGeneral" style="height: 200px;"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+<!-- 		------------------------------------------------------------------------------------------------------
+			----------------------------------------  QAM --------------------------------------------------------
+			------------------------------------------------------------------------------------------------------ --> 
+				<div id="tabQAM" class="tab-pane fade in active">			
+					<div class="row" id="showQAMGeneral" style="display: none">
+						<div class="col-xs-12 col-sm-6">
+							<div class="box">
+								<div class="box-header">
+									<div class="box-name">
+										<i class="fa fa-search"></i>
+										<span>Question Posted QAM </span>
+									</div>
+									<div class="box-icons">
+										<a id="qam1"class="getPopPup" data-toggle="modal" data-target=".bs-example-modal-sm">
+											<i class="fa fa-info-circle"></i>
+										</a>
+										<a id="moreInformationQAM"class="">
+											<i class="fa fa-plus"></i>
+										</a>
+										<a class="collapse-link">
+											<i class="fa fa-chevron-up"></i>
+										</a>
+										<a class="expand-link">
+											<i class="fa fa-expand"></i>
+										</a>
+										<a class="close-link">
+											<i class="fa fa-times"></i>
+										</a>
+									</div>
+									<div class="no-move"></div>
+								</div>
+								<div class="box-content">
+									<div id="drawQamQuestionPostedGeneral" style="height: 200px; width: 100%;"></div>
+								</div>
+							</div>
+						</div>
+						<div class="col-xs-12 col-sm-6">
+							<div class="box">
+								<div class="box-header">
+									<div class="box-name">
+										<i class="fa fa-search"></i>
+										<span>Persons Posting Questions QAM</span>
+									</div>
+									<div class="box-icons">
+										<a id="qam2"class="getPopPup" data-toggle="modal" data-target=".bs-example-modal-sm">
+											<i class="fa fa-info-circle"></i>
+										</a>
+										<a id="moreInformationQAMAbstract"class="">
+											<i class="fa fa-plus"></i>
+										</a>
+										<a class="collapse-link">
+											<i class="fa fa-chevron-up"></i>
+										</a>
+										<a class="expand-link">
+											<i class="fa fa-expand"></i>
+										</a>
+										<a class="close-link">
+											<i class="fa fa-times"></i>
+										</a>
+									</div>
+									<div class="no-move"></div>
+								</div>
+								<div class="box-content">
+									<div id="drawQamPersonsPostingQuestionsGeneral" style="height: 200px;"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+<!-- 		------------------------------------------------------------------------------------------------------
+			----------------------------------------  MLS --------------------------------------------------------
+			------------------------------------------------------------------------------------------------------ -->
+				<div id="tabMLS" class="tab-pane fade in active">			
+					<div class="row" id="showMLSGeneral" style="display: none">
+						<div class="col-xs-12 col-sm-6">
+							<div class="box">
+								<div class="box-header">
+									<div class="box-name">
+										<i class="fa fa-search"></i>
+										<span>Companies MLS</span>
+									</div>
+									<div class="box-icons">
+										<a id="mls1"class="getPopPup" data-toggle="modal" data-target=".bs-example-modal-sm">
+											<i class="fa fa-info-circle"></i>
+										</a>
+										<a id="moreInformationMLS"class="">
+											<i class="fa fa-plus"></i>
+										</a>
+										<a class="collapse-link">
+											<i class="fa fa-chevron-up"></i>
+										</a>
+										<a class="expand-link">
+											<i class="fa fa-expand"></i>
+										</a>
+										<a class="close-link">
+											<i class="fa fa-times"></i>
+										</a>
+									</div>
+									<div class="no-move"></div>
+								</div>
+								<div class="box-content">
+									<div id="drawMLSCompaniesGeneral" style="height: 200px; width: 100%;"></div>
+								</div>
+							</div>
+						</div>
+						<div class="col-xs-12 col-sm-6">
+							<div class="box">
+								<div class="box-header">
+									<div class="box-name">
+										<i class="fa fa-search"></i>
+										<span>Repositories MLS</span>
+									</div>
+									<div class="box-icons">
+										<a id="mls2"class="getPopPup" data-toggle="modal" data-target=".bs-example-modal-sm">
+											<i class="fa fa-info-circle"></i>
+										</a>
+										<a id="moreInformationMLSAbstract"class="">
+											<i class="fa fa-plus"></i>
+										</a>
+										<a class="collapse-link">
+											<i class="fa fa-chevron-up"></i>
+										</a>
+										<a class="expand-link">
+											<i class="fa fa-expand"></i>
+										</a>
+										<a class="close-link">
+											<i class="fa fa-times"></i>
+										</a>
+									</div>
+									<div class="no-move"></div>
+								</div>
+								<div class="box-content">
+									<div id="drawMLSRepositoriesGeneral" style="height: 200px;"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row" id="showMLSGeneralRow2" style="display: none">
+						<div class="col-xs-12 col-sm-6">
+							<div class="box">
+								<div class="box-header">
+									<div class="box-name">
+										<i class="fa fa-search"></i>
+										<span> Senders MLS Per Company</span>
+									</div>
+									<div class="box-icons">
+										<a id="mls3"class="getPopPup" data-toggle="modal" data-target=".bs-example-modal-sm">
+											<i class="fa fa-info-circle"></i>
+										</a>
+										<a id="moreInformationMLSBusiness"class="">
+											<i class="fa fa-plus"></i>
+										</a>
+										<a class="collapse-link">
+											<i class="fa fa-chevron-up"></i>
+										</a>
+										<a class="expand-link">
+											<i class="fa fa-expand"></i>
+										</a>
+										<a class="close-link">
+											<i class="fa fa-times"></i>
+										</a>
+									</div>
+									<div class="no-move"></div>
+								</div>
+								<div class="box-content">
+									<div id="drawMLSSenderPerComapnyGeneral" style="height: 200px; width: 100%;"></div>
+								</div>
+							</div>
+						</div>
+						<div class="col-xs-12 col-sm-6">
+							<div class="box">
+								<div class="box-header">
+									<div class="box-name">
+										<i class="fa fa-search"></i>
+										<span> Demographic MLS</span>
+									</div>
+									<div class="box-icons">
+										<a id="mls4"class="getPopPup" data-toggle="modal" data-target=".bs-example-modal-sm">
+											<i class="fa fa-info-circle"></i>
+										</a>
+										<a id="moreInformationMLSDemographic"class="">
+											<i class="fa fa-plus"></i>
+										</a>
+										<a class="collapse-link">
+											<i class="fa fa-chevron-up"></i>
+										</a>
+										<a class="expand-link">
+											<i class="fa fa-expand"></i>
+										</a>
+										<a class="close-link">
+											<i class="fa fa-times"></i>
+										</a>
+									</div>
+									<div class="no-move"></div>
+								</div>
+								<div class="box-content">
+									<div id="drawMLSDemographicGeneral" style="height: 200px;"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+<!-- 		------------------------------------------------------------------------------------------------------
+			----------------------------------------  PARTE DE BUSINESS ------------------------------------------
+			------------------------------------------------------------------------------------------------------ -->
+			<ul class="nav nav-tabs" id="showMenuTabBusiness" style="display: none">
+				<li class="active"><a data-toggle="tab" href="#tabSCMBusiness">SCM</a></li>
+				<li><a data-toggle="tab" href="#tabITSBusiness">ITS</a></li>
+				<li><a data-toggle="tab" href="#tabMLSBusiness">MLS</a></li>
+			</ul><br>
+<!-- 		------------------------------------------------------------------------------------------------------
+			----------------------------------------  SCM---------------------------------------------------------
+			------------------------------------------------------------------------------------------------------ -->
+			<div class="tab-content">	
+				<div id="tabSCMBusiness" class="tab-pane fade in active">			
+					<div class="row" id="showBusinessSCM" style="display: none">
+						<div class="col-xs-12 col-sm-6">
+							<div class="box">
+								<div class="box-header">
+									<div class="box-name">
+										<i class="fa fa-search"></i>
+										<span>Commits Per Company SCM</span>
+									</div>
+									<div class="box-icons">
+										<a class="collapse-link">
+											<i class="fa fa-chevron-up"></i>
+										</a>
+										<a class="expand-link">
+											<i class="fa fa-expand"></i>
+										</a>
+										<a class="close-link">
+											<i class="fa fa-times"></i>
+										</a>
+									</div>
+									<div class="no-move"></div>
+								</div>
+								<div class="box-content">
+									<div id="drawScmCommitsPerComanyBusiness" style="height: 200px; width: 100%;"></div>
+								</div>
+							</div>
+						</div>
+						<div class="col-xs-12 col-sm-6">
+							<div class="box">
+								<div class="box-header">
+									<div class="box-name">
+										<i class="fa fa-search"></i>
+										<span>Authors Per Company SCM</span>
+									</div>
+									<div class="box-icons">
+										<a class="collapse-link">
+											<i class="fa fa-chevron-up"></i>
+										</a>
+										<a class="expand-link">
+											<i class="fa fa-expand"></i>
+										</a>
+										<a class="close-link">
+											<i class="fa fa-times"></i>
+										</a>
+									</div>
+									<div class="no-move"></div>
+								</div>
+								<div class="box-content">
+									<div id="drawScmAuthorPerComapnyBusiness" style="height: 200px;"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row" id="showBusinessSCMRow2"style="display: none">
+						<div class="col-xs-12">
+							<div class="box">
+								<div class="box-header">
+									<div class="box-name">
+										<i class="fa fa-search"></i>
+										<span>Active Companies</span>
+									</div>
+									<div class="box-icons">
+										<a class="collapse-link">
+											<i class="fa fa-chevron-up"></i>
+										</a>
+										<a class="expand-link">
+											<i class="fa fa-expand"></i>
+										</a>
+										<a class="close-link">
+											<i class="fa fa-times"></i>
+										</a>
+									</div>
+									<div class="no-move"></div>
+								</div>
+								<div class="box-content">
+									<div id="drawScmActiveCompaniesBusiness" style="height: 200px;"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+<!-- 		------------------------------------------------------------------------------------------------------
+			----------------------------------------  ITS  -------------------------------------------------------
+			------------------------------------------------------------------------------------------------------ -->
+				<div id="tabITSBusiness" class="tab-pane fade in active">	
+					<div class="row" id="showBusinessITS"style="display: none">
+						<div class="col-xs-12 col-sm-6">
+							<div class="box">
+								<div class="box-header">
+									<div class="box-name">
+										<i class="fa fa-search"></i>
+										<span>Commits Per Company ITS</span>
+									</div>
+									<div class="box-icons">
+										<a class="collapse-link">
+											<i class="fa fa-chevron-up"></i>
+										</a>
+										<a class="expand-link">
+											<i class="fa fa-expand"></i>
+										</a>
+										<a class="close-link">
+											<i class="fa fa-times"></i>
+										</a>
+									</div>
+									<div class="no-move"></div>
+								</div>
+								<div class="box-content">
+									<div id="drawItsCommitsPerCompanyBusiness" style="height: 200px; width: 100%;"></div>
+								</div>
+							</div>
+						</div>
+						<div class="col-xs-12 col-sm-6">
+							<div class="box">
+								<div class="box-header">
+									<div class="box-name">
+										<i class="fa fa-search"></i>
+										<span>Closed Per Company ITS</span>
+									</div>
+									<div class="box-icons">
+										<a class="collapse-link">
+											<i class="fa fa-chevron-up"></i>
+										</a>
+										<a class="expand-link">
+											<i class="fa fa-expand"></i>
+										</a>
+										<a class="close-link">
+											<i class="fa fa-times"></i>
+										</a>
+									</div>
+									<div class="no-move"></div>
+								</div>
+								<div class="box-content">
+									<div id="drawItsClosedPerCompanyBusiness" style="height: 200px;"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row" id="showBusinessITSRow2"style="display: none">
+						<div class="col-xs-12">
+							<div class="box">
+								<div class="box-header">
+									<div class="box-name">
+										<i class="fa fa-search"></i>
+										<span>Companies ITS</span>
+									</div>
+									<div class="box-icons">
+										<a class="collapse-link">
+											<i class="fa fa-chevron-up"></i>
+										</a>
+										<a class="expand-link">
+											<i class="fa fa-expand"></i>
+										</a>
+										<a class="close-link">
+											<i class="fa fa-times"></i>
+										</a>
+									</div>
+									<div class="no-move"></div>
+								</div>
+								<div class="box-content">
+									<div id="drawItsCompaniesBusiness" style="height: 200px;"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+<!-- 		------------------------------------------------------------------------------------------------------
+			----------------------------------------  MLS  -------------------------------------------------------
+			------------------------------------------------------------------------------------------------------ -->
+				<div id="tabMLSBusiness" class="tab-pane fade in active">		
+					<div class="row" id="showBusinessMLS"style="display: none">
+						<div class="col-xs-12 col-sm-6">
+							<div class="box">
+								<div class="box-header">
+									<div class="box-name">
+										<i class="fa fa-search"></i>
+										<span>Senders Per Company MLS</span>
+									</div>
+									<div class="box-icons">
+										<a class="collapse-link">
+											<i class="fa fa-chevron-up"></i>
+										</a>
+										<a class="expand-link">
+											<i class="fa fa-expand"></i>
+										</a>
+										<a class="close-link">
+											<i class="fa fa-times"></i>
+										</a>
+									</div>
+									<div class="no-move"></div>
+								</div>
+								<div class="box-content">
+									<div id="drawMlsSendersPerCompanyBusiness" style="height: 200px; width: 100%;"></div>
+								</div>
+							</div>
+						</div>
+						<div class="col-xs-12 col-sm-6">
+							<div class="box">
+								<div class="box-header">
+									<div class="box-name">
+										<i class="fa fa-search"></i>
+										<span>VACIO MLS</span>
+									</div>
+									<div class="box-icons">
+										<a class="collapse-link">
+											<i class="fa fa-chevron-up"></i>
+										</a>
+										<a class="expand-link">
+											<i class="fa fa-expand"></i>
+										</a>
+										<a class="close-link">
+											<i class="fa fa-times"></i>
+										</a>
+									</div>
+									<div class="no-move"></div>
+								</div>
+								<div class="box-content">
+									<div id="drawMlsVacioBusiness" style="height: 200px;"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row" id="showBusinessMLSRow2"style="display: none">
+						<div class="col-xs-12">
+							<div class="box">
+								<div class="box-header">
+									<div class="box-name">
+										<i class="fa fa-search"></i>
+										<span>Active Companies MLS</span>
+									</div>
+									<div class="box-icons">
+										<a class="collapse-link">
+											<i class="fa fa-chevron-up"></i>
+										</a>
+										<a class="expand-link">
+											<i class="fa fa-expand"></i>
+										</a>
+										<a class="close-link">
+											<i class="fa fa-times"></i>
+										</a>
+									</div>
+									<div class="no-move"></div>
+								</div>
+								<div class="box-content">
+									<div id="drawMlsActiveCompaniesBusiness" style="height: 200px;"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+<!-- 		------------------------------------------------------------------------------------------------------
+			------------------------------------  EVENTO BUSINESS ------------------------------------------------
+			------------------------------------------------------------------------------------------------------ -->
+			<div class="row" id="showBusinessEvent1"style="display: none">
+				<div class="col-xs-12">
+					<div class="box">
+						<div class="box-header">
+							<div class="box-name">
+								<i class="fa fa-search"></i>
+							</div>
+							<div class="box-icons">
+								<a class="collapse-link">
+									<i class="fa fa-chevron-up"></i>
+								</a>
+								<a class="expand-link">
+									<i class="fa fa-expand"></i>
+								</a>
+								<a class="close-link">
+									<i class="fa fa-times"></i>
+								</a>
+							</div>
+							<div class="no-move"></div>
+						</div>
+						<div class="box-content">
+							<div id="drawDemographicEvent1" style="height: 200px;"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row" id="showBusinessEvent2"style="display: none">
+				<div class="col-xs-12">
+					<div class="box">
+						<div class="box-header">
+							<div class="box-name">
+								<i class="fa fa-search"></i>
+								<span></span>
+							</div>
+							<div class="box-icons">
+								<a class="collapse-link">
+									<i class="fa fa-chevron-up"></i>
+								</a>
+								<a class="expand-link">
+									<i class="fa fa-expand"></i>
+								</a>
+								<a class="close-link">
+									<i class="fa fa-times"></i>
+								</a>
+							</div>
+							<div class="no-move"></div>
+						</div>
+						<div class="box-content">
+							<div id="drawDemographicEvent2" style="height: 200px;"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row" id="showBusinessEvent3"style="display: none">
+				<div class="col-xs-12">
+					<div class="box">
+						<div class="box-header">
+							<div class="box-name">
+								<i class="fa fa-search"></i>
+								<span></span>
+							</div>
+							<div class="box-icons">
+								<a class="collapse-link">
+									<i class="fa fa-chevron-up"></i>
+								</a>
+								<a class="expand-link">
+									<i class="fa fa-expand"></i>
+								</a>
+								<a class="close-link">
+									<i class="fa fa-times"></i>
+								</a>
+							</div>
+							<div class="no-move"></div>
+						</div>
+						<div class="box-content">
+							<div id="drawDemographicEvent3" style="height: 200px;"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row" id="showBusinessEvent4"style="display: none">
+				<div class="col-xs-12">
+					<div class="box">
+						<div class="box-header">
+							<div class="box-name">
+								<i class="fa fa-search"></i>
+								<span></span>
+							</div>
+							<div class="box-icons">
+								<a class="collapse-link">
+									<i class="fa fa-chevron-up"></i>
+								</a>
+								<a class="expand-link">
+									<i class="fa fa-expand"></i>
+								</a>
+								<a class="close-link">
+									<i class="fa fa-times"></i>
+								</a>
+							</div>
+							<div class="no-move"></div>
+						</div>
+						<div class="box-content">
+							<div id="drawDemographicEvent4" style="height: 200px;"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row" id="showBusinessEvent5"style="display: none">
+				<div class="col-xs-12">
+					<div class="box">
+						<div class="box-header">
+							<div class="box-name">
+								<i class="fa fa-search"></i>
+								<span></span>
+							</div>
+							<div class="box-icons">
+								<a class="collapse-link">
+									<i class="fa fa-chevron-up"></i>
+								</a>
+								<a class="expand-link">
+									<i class="fa fa-expand"></i>
+								</a>
+								<a class="close-link">
+									<i class="fa fa-times"></i>
+								</a>
+							</div>
+							<div class="no-move"></div>
+						</div>
+						<div class="box-content">
+							<div id="drawDemographicEvent5" style="height: 200px;"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row" id="showBusinessEvent6"style="display: none">
+				<div class="col-xs-12">
+					<div class="box">
+						<div class="box-header">
+							<div class="box-name">
+								<i class="fa fa-search"></i>
+								<span></span>
+							</div>
+							<div class="box-icons">
+								<a class="collapse-link">
+									<i class="fa fa-chevron-up"></i>
+								</a>
+								<a class="expand-link">
+									<i class="fa fa-expand"></i>
+								</a>
+								<a class="close-link">
+									<i class="fa fa-times"></i>
+								</a>
+							</div>
+							<div class="no-move"></div>
+						</div>
+						<div class="box-content">
+							<div id="drawDemographicEvent6" style="height: 200px;"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row" id="showBusinessEvent7"style="display: none">
+				<div class="col-xs-12">
+					<div class="box">
+						<div class="box-header">
+							<div class="box-name">
+								<i class="fa fa-search"></i>
+								<span></span>
+							</div>
+							<div class="box-icons">
+								<a class="collapse-link">
+									<i class="fa fa-chevron-up"></i>
+								</a>
+								<a class="expand-link">
+									<i class="fa fa-expand"></i>
+								</a>
+								<a class="close-link">
+									<i class="fa fa-times"></i>
+								</a>
+							</div>
+							<div class="no-move"></div>
+						</div>
+						<div class="box-content">
+							<div id="drawDemographicEvent7" style="height: 200px;"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			
+<!-- 	------------------------------------------------------------------------------------------------------
+		-------------------------------------  PARTE DE DEMOGRAPHIC ------------------------------------------
+		------------------------------------------------------------------------------------------------------ -->
+			<ul class="nav nav-tabs" id="showMenuTabDemographic" style="display: none">
+				<li class="active"><a data-toggle="tab" href="#tabSCMDemographic">SCM</a></li>
+				<li><a data-toggle="tab" href="#tabITSDemographic">ITS</a></li>
+				<li><a data-toggle="tab" href="#tabMLSDemograpifc">MLS</a></li>
+			</ul><br>
+			
+			
+			
+<!-- 	------------------------------------------------------------------------------------------------------
+		---------------------------------------  SCM  --------------------------------------------------------
+		------------------------------------------------------------------------------------------------------ -->
+			<div class="tab-content">	
+				<div id="tabSCMDemographic" class="tab-pane fade in active">	
+					<div class="row"id="showDemograpgicSCM"style="display: none">
+						<div class="col-xs-12 col-sm-6">
+							<div class="box">
+								<div class="box-header">
+									<div class="box-name">
+										<i class="fa fa-search"></i>
+										<span>Sour Code Development SCM</span>
+									</div>
+									<div class="box-icons">
+										<a class="collapse-link">
+											<i class="fa fa-chevron-up"></i>
+										</a>
+										<a class="expand-link">
+											<i class="fa fa-expand"></i>
+										</a>
+										<a class="close-link">
+											<i class="fa fa-times"></i>
+										</a>
+									</div>
+									<div class="no-move"></div>
+								</div>
+								<div class="box-content">
+									<div id="drawScmSourCodeDevelopmentDemographic" style="height: 200px;"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<div class="row" id="showDemograpgicSCMRow2"style="display: none">
+						<div class="col-xs-12">
+							<div class="box ui-draggable ui-droppable">
+								<div class="box-header">
+									<div class="box-name">
+										<span id="titleTableScmDemographic">List Authors SCM</span>
+									</div>
+									<div class="box-icons">
+										<a class="collapse-link">
+											<i class="fa fa-chevron-up"></i>
+										</a>
+										<a class="expand-link">
+											<i class="fa fa-expand"></i>
+										</a>
+										<a class="close-link">
+											<i class="fa fa-times"></i>
+										</a>
+									</div>
+									<div class="no-move"></div>
+								</div>
+								<div class="box-content no-padding">
+									<table id="tableScmDemographic" class="table table-bordered table-striped table-hover table-heading table-datatable dataTable" aria-describedby="datatable-3_info">
+										<thead>
+											<tr role="row"><th class="sorting_asc" role="columnheader" tabindex="0" aria-controls="datatable-3" rowspan="1" colspan="1" style="width: 46px;" aria-sort="ascending" aria-label="Rate: activate to sort column descending">Orden</th><th class="sorting" role="columnheader" tabindex="0" aria-controls="datatable-3" rowspan="1" colspan="1" style="width: 50px;" aria-label="Distro: activate to sort column ascending">Identificador</th><th class="sorting" role="columnheader" tabindex="0" aria-controls="datatable-3" rowspan="1" colspan="1" style="width: 200px;" aria-label="Votes: activate to sort column ascending">Nombre</th><th class="sorting" role="columnheader" tabindex="0" aria-controls="datatable-3" rowspan="1" colspan="1" style="width: 200px;" aria-label="Homepage: activate to sort column ascending">Mas Informaion</th></tr>
+										</thead>
+										
+										<tfoot>
+											<tr><th rowspan="1" colspan="1">Orden</th><th rowspan="1" colspan="1">Identificador</th><th rowspan="1" colspan="1">Nombre</th><th rowspan="1" colspan="1">Mas Informacion</th></tr>
+										</tfoot>
+										<tbody id="tableBodyScmDemographic" role="alert" aria-live="polite" aria-relevant="all">
+											<tr class="odd">
+												<td class="  sorting_1">Seleccione</td>
+												<td class=" ">Un periodo de la lista</td>
+												<td class=" "></td>
+												<td class=" "></td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row" id="showDemograpgicSCMRowEvent"style="display: none">
+						<div class="col-xs-12">
+							<div class="box">
+								<div class="box-header">
+									<div class="box-name">
+										<i class="fa fa-search"></i>
+										<span>Information About Authors SCM</span>
+									</div>
+									<div class="box-icons">
+										<a class="collapse-link">
+											<i class="fa fa-chevron-up"></i>
+										</a>
+										<a class="expand-link">
+											<i class="fa fa-expand"></i>
+										</a>
+										<a class="close-link">
+											<i class="fa fa-times"></i>
+										</a>
+									</div>
+									<div class="no-move"></div>
+								</div>
+								<div class="box-content">
+									<div id="drawScmAuthorTableDemographic" style="height: 200px;"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+<!-- 	------------------------------------------------------------------------------------------------------
+		---------------------------------------  ITS  --------------------------------------------------------
+		------------------------------------------------------------------------------------------------------ -->
+				<div id="tabITSDemographic" class="tab-pane fade in active">	
+					<div class="row" id="showDemograpgicITS"style="display: none">
+						<div class="col-xs-12 col-sm-6">
+							<div class="box">
+								<div class="box-header">
+									<div class="box-name">
+										<i class="fa fa-search"></i>
+										<span>Tickets Participant ITS</span>
+									</div>
+									<div class="box-icons">
+										<a class="collapse-link">
+											<i class="fa fa-chevron-up"></i>
+										</a>
+										<a class="expand-link">
+											<i class="fa fa-expand"></i>
+										</a>
+										<a class="close-link">
+											<i class="fa fa-times"></i>
+										</a>
+									</div>
+									<div class="no-move"></div>
+								</div>
+								<div class="box-content">
+									<div id="drawItsTicketsParticipantsDemographic" style="height: 200px;"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<div class="row" id="showDemograpgicITSRow2"style="display: none">
+						<div class="col-xs-12">
+							<div class="box ui-draggable ui-droppable">
+								<div class="box-header">
+									<div class="box-name">
+										<span id="titleTableItsDemographic">List Authors ITS</span>
+									</div>
+									<div class="box-icons">
+										<a class="collapse-link">
+											<i class="fa fa-chevron-up"></i>
+										</a>
+										<a class="expand-link">
+											<i class="fa fa-expand"></i>
+										</a>
+										<a class="close-link">
+											<i class="fa fa-times"></i>
+										</a>
+									</div>
+									<div class="no-move"></div>
+								</div>
+								<div class="box-content no-padding">
+									<table id="tableItsDemographic" class="table table-bordered table-striped table-hover table-heading table-datatable dataTable" aria-describedby="datatable-3_info">
+										<thead>
+											<tr role="row"><th class="sorting_asc" role="columnheader" tabindex="0" aria-controls="datatable-3" rowspan="1" colspan="1" style="width: 46px;" aria-sort="ascending" aria-label="Rate: activate to sort column descending">Orden</th><th class="sorting" role="columnheader" tabindex="0" aria-controls="datatable-3" rowspan="1" colspan="1" style="width: 50px;" aria-label="Distro: activate to sort column ascending">Identificador</th><th class="sorting" role="columnheader" tabindex="0" aria-controls="datatable-3" rowspan="1" colspan="1" style="width: 200px;" aria-label="Votes: activate to sort column ascending">Nombre</th><th class="sorting" role="columnheader" tabindex="0" aria-controls="datatable-3" rowspan="1" colspan="1" style="width: 200px;" aria-label="Homepage: activate to sort column ascending">Mas Informaion</th></tr>
+										</thead>
+										
+										<tfoot>
+											<tr><th rowspan="1" colspan="1">Orden</th><th rowspan="1" colspan="1">Identificador</th><th rowspan="1" colspan="1">Nombre</th><th rowspan="1" colspan="1">Mas Informacion</th></tr>
+										</tfoot>
+										<tbody id="tableBodyItsDemographic" role="alert" aria-live="polite" aria-relevant="all">
+											<tr class="odd">
+												<td class="  sorting_1">Seleccione</td>
+												<td class=" ">Un periodo de la lista</td>
+												<td class=" "></td>
+												<td class=" "></td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row" id="showDemograpgicITSEvent"style="display: none">
+						<div class="col-xs-12">
+							<div class="box">
+								<div class="box-header">
+									<div class="box-name">
+										<i class="fa fa-search"></i>
+										<span>Information About Authors ITS</span>
+									</div>
+									<div class="box-icons">
+										<a class="collapse-link">
+											<i class="fa fa-chevron-up"></i>
+										</a>
+										<a class="expand-link">
+											<i class="fa fa-expand"></i>
+										</a>
+										<a class="close-link">
+											<i class="fa fa-times"></i>
+										</a>
+									</div>
+									<div class="no-move"></div>
+								</div>
+								<div class="box-content">
+									<div id="drawItsAuthorTableDemographic" style="height: 200px;"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+<!-- 	------------------------------------------------------------------------------------------------------
+		---------------------------------------  MLS  --------------------------------------------------------
+		------------------------------------------------------------------------------------------------------ -->
+				<div id="tabMLSDemographic" class="tab-pane fade in active">
+					<div class="row" id="showDemograpgicMLS"style="display: none">
+						<div class="col-xs-12 col-sm-6">
+							<div class="box">
+								<div class="box-header">
+									<div class="box-name">
+										<i class="fa fa-search"></i>
+										<span>Demographic MLS</span>
+									</div>
+									<div class="box-icons">
+										<a class="collapse-link">
+											<i class="fa fa-chevron-up"></i>
+										</a>
+										<a class="expand-link">
+											<i class="fa fa-expand"></i>
+										</a>
+										<a class="close-link">
+											<i class="fa fa-times"></i>
+										</a>
+									</div>
+									<div class="no-move"></div>
+								</div>
+								<div class="box-content">
+									<div id="drawMlsDemographic" style="height: 200px;"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<div class="row" id="showDemograpgicMLSRow2"style="display: none">
+						<div class="col-xs-12">
+							<div class="box ui-draggable ui-droppable">
+								<div class="box-header">
+									<div class="box-name">
+										<span id="titleTableMlsDemographic">List Authors MLS</span>
+									</div>
+									<div class="box-icons">
+										<a class="collapse-link">
+											<i class="fa fa-chevron-up"></i>
+										</a>
+										<a class="expand-link">
+											<i class="fa fa-expand"></i>
+										</a>
+										<a class="close-link">
+											<i class="fa fa-times"></i>
+										</a>
+									</div>
+									<div class="no-move"></div>
+								</div>
+								<div class="box-content no-padding">
+									<table id="tableMlsDemographic" class="table table-bordered table-striped table-hover table-heading table-datatable dataTable" aria-describedby="datatable-3_info">
+										<thead>
+											<tr role="row"><th class="sorting_asc" role="columnheader" tabindex="0" aria-controls="datatable-3" rowspan="1" colspan="1" style="width: 46px;" aria-sort="ascending" aria-label="Rate: activate to sort column descending">Orden</th><th class="sorting" role="columnheader" tabindex="0" aria-controls="datatable-3" rowspan="1" colspan="1" style="width: 50px;" aria-label="Distro: activate to sort column ascending">Identificador</th><th class="sorting" role="columnheader" tabindex="0" aria-controls="datatable-3" rowspan="1" colspan="1" style="width: 200px;" aria-label="Votes: activate to sort column ascending">Nombre</th><th class="sorting" role="columnheader" tabindex="0" aria-controls="datatable-3" rowspan="1" colspan="1" style="width: 200px;" aria-label="Homepage: activate to sort column ascending">Mas Informaion</th></tr>
+										</thead>
+										
+										<tfoot>
+											<tr><th rowspan="1" colspan="1">Orden</th><th rowspan="1" colspan="1">Identificador</th><th rowspan="1" colspan="1">Nombre</th><th rowspan="1" colspan="1">Mas Informacion</th></tr>
+										</tfoot>
+										<tbody id="tableBodyMlsDemographic" role="alert" aria-live="polite" aria-relevant="all">
+											<tr class="odd">
+												<td class="  sorting_1">Seleccione</td>
+												<td class=" ">Un periodo de la lista</td>
+												<td class=" "></td>
+												<td class=" "></td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row" id="showDemograpgicMLSEvent"style="display: none">
+						<div class="col-xs-12">
+							<div class="box">
+								<div class="box-header">
+									<div class="box-name">
+										<i class="fa fa-search"></i>
+										<span>Information About Authors MLS</span>
+									</div>
+									<div class="box-icons">
+										<a class="collapse-link">
+											<i class="fa fa-chevron-up"></i>
+										</a>
+										<a class="expand-link">
+											<i class="fa fa-expand"></i>
+										</a>
+										<a class="close-link">
+											<i class="fa fa-times"></i>
+										</a>
+									</div>
+									<div class="no-move"></div>
+								</div>
+								<div class="box-content">
+									<div id="drawMlsAuthorTableDemographic" style="height: 200px;"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>	
+<!-- 		------------------------------------------------------------------------------------------------------
+			------------------------------------  SCM PROPIO -----------------------------------------------------
+			------------------------------------------------------------------------------------------------------  -->
+			<div class="row" id="showSCMOnly"style="display: none">
+				<div class="col-xs-12 col-sm-6">
+					<div class="box">
+						<div class="box-header">
+							<div class="box-name">
+								<i class="fa fa-search"></i>
+								<span>Commits SCM</span>
+							</div>
+							<div class="box-icons">
+								<a class="collapse-link">
+									<i class="fa fa-chevron-up"></i>
+								</a>
+								<a class="expand-link">
+									<i class="fa fa-expand"></i>
+								</a>
+								<a class="close-link">
+									<i class="fa fa-times"></i>
+								</a>
+							</div>
+							<div class="no-move"></div>
+						</div>
+						<div class="box-content">
+							<div id="drawScmCommitsSCM" style="height: 200px; width: 100%;"></div>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-6">
+					<div class="box">
+						<div class="box-header">
+							<div class="box-name">
+								<i class="fa fa-search"></i>
+								<span>Authors SCM</span>
+							</div>
+							<div class="box-icons">
+								<a class="collapse-link">
+									<i class="fa fa-chevron-up"></i>
+								</a>
+								<a class="expand-link">
+									<i class="fa fa-expand"></i>
+								</a>
+								<a class="close-link">
+									<i class="fa fa-times"></i>
+								</a>
+							</div>
+							<div class="no-move"></div>
+						</div>
+						<div class="box-content">
+							<div id="drawScmAuthorSCM" style="height: 200px;"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row"id="showSCMOnlyRow2"style="display: none">
+				<div class="col-xs-12 col-sm-6">
+					<div class="box">
+						<div class="box-header">
+							<div class="box-name">
+								<i class="fa fa-search"></i>
+								<span> Files SCM</span>
+							</div>
+							<div class="box-icons">
+								<a class="collapse-link">
+									<i class="fa fa-chevron-up"></i>
+								</a>
+								<a class="expand-link">
+									<i class="fa fa-expand"></i>
+								</a>
+								<a class="close-link">
+									<i class="fa fa-times"></i>
+								</a>
+							</div>
+							<div class="no-move"></div>
+						</div>
+						<div class="box-content">
+							<div id="drawScmFilesSCM" style="height: 200px; width: 100%;"></div>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-6">
+					<div class="box">
+						<div class="box-header">
+							<div class="box-name">
+								<i class="fa fa-search"></i>
+								<span> General Situation SCM</span>
+							</div>
+							<div class="box-icons">
+								<a class="collapse-link">
+									<i class="fa fa-chevron-up"></i>
+								</a>
+								<a class="expand-link">
+									<i class="fa fa-expand"></i>
+								</a>
+								<a class="close-link">
+									<i class="fa fa-times"></i>
+								</a>
+							</div>
+							<div class="no-move"></div>
+						</div>
+						<div class="box-content">
+							<div id="drawScmGeneralSituationSCM" style="height: 200px;"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row"id="showSCMOnlyRow3"style="display: none">
+				<div class="col-xs-12">
+					<div class="box">
+						<div class="box-header">
+							<div class="box-name">
+								<i class="fa fa-search"></i>
+								<span>Added Lines vs Removed Lines SCM</span>
+							</div>
+							<div class="box-icons">
+								<a class="collapse-link">
+									<i class="fa fa-chevron-up"></i>
+								</a>
+								<a class="expand-link">
+									<i class="fa fa-expand"></i>
+								</a>
+								<a class="close-link">
+									<i class="fa fa-times"></i>
+								</a>
+							</div>
+							<div class="no-move"></div>
+						</div>
+						<div class="box-content">
+							<div id="drawScmAddedLinesRemovedLinesSCM" style="height: 200px;"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row" id="showSCMOnlyRow4"style="display: none">
+				<div class="col-xs-12">
+					<div class="box ui-draggable ui-droppable">
+						<div class="box-header">
+							<div class="box-name">
+								<span id="titleTableSCM">Tags SCM</span>
+							</div>
+							<div class="box-icons">
+								<a class="collapse-link">
+									<i class="fa fa-chevron-up"></i>
+								</a>
+								<a class="expand-link">
+									<i class="fa fa-expand"></i>
+								</a>
+								<a class="close-link">
+									<i class="fa fa-times"></i>
+								</a>
+							</div>
+							<div class="no-move"></div>
+						</div>
+						<div class="box-content no-padding">
+							<table id="tableSCM" class="table table-bordered table-striped table-hover table-heading table-datatable dataTable" aria-describedby="datatable-3_info">
+								<thead>
+									<tr role="row"><th class="sorting_asc" role="columnheader" tabindex="0" aria-controls="datatable-3" rowspan="1" colspan="1" style="width: 46px;" aria-sort="ascending" aria-label="Rate: activate to sort column descending">Orden</th><th class="sorting" role="columnheader" tabindex="0" aria-controls="datatable-3" rowspan="1" colspan="1" style="width: 50px;" aria-label="Distro: activate to sort column ascending">Tag</th><th class="sorting" role="columnheader" tabindex="0" aria-controls="datatable-3" rowspan="1" colspan="1" style="width: 200px;" aria-label="Votes: activate to sort column ascending">Total</th></tr>
+								</thead>
+								
+								<tfoot>
+									<tr><th rowspan="1" colspan="1">Orden</th><th rowspan="1" colspan="1">Tag</th><th rowspan="1" colspan="1">Total</th></tr>
+								</tfoot>
+								<tbody id="tableBodySCM" role="alert" aria-live="polite" aria-relevant="all">
+									<tr class="odd">
+										<td class="  sorting_1">1</td>
+										<td class=" ">Ubuntu</td>
+										<td class=" ">16%</td>
+									</tr>
+									<tr class="even">
+										<td class="  sorting_1">2</td>
+										<td class=" ">Debian</td>
+										<td class=" ">14.1%</td>
+									</tr>
+										<tr class="even">
+										<td class="  sorting_1">2</td>
+										<td class=" ">sfasfasdfasdfasdfa</td>
+										<td class=" ">14.1%</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row" id="showSCMOnlyEvent"style="display: none">
+				<div class="col-xs-12">
+					<div class="box">
+						<div class="box-header">
+							<div class="box-name">
+								<i class="fa fa-search"></i>
+								<span>Source Code Management</span>
+							</div>
+							<div class="box-icons">
+								<a class="collapse-link">
+									<i class="fa fa-chevron-up"></i>
+								</a>
+								<a class="expand-link">
+									<i class="fa fa-expand"></i>
+								</a>
+								<a class="close-link">
+									<i class="fa fa-times"></i>
+								</a>
+							</div>
+							<div class="no-move"></div>
+						</div>
+						<div class="box-content">
+							<div id="drawScmTagsSCM" style="height: 200px;"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+<!-- 		------------------------------------------------------------------------------------------------------
+			------------------------------------  ITS PROPIO -----------------------------------------------------
+			------------------------------------------------------------------------------------------------------  -->
+			<div class="row" id="showITSOnly"style="display: none">
+				<div class="col-xs-12 col-sm-6">
+					<div class="box">
+						<div class="box-header">
+							<div class="box-name">
+								<i class="fa fa-search"></i>
+								<span>Closed vs Opened ITS</span>
+							</div>
+							<div class="box-icons">
+								<a class="collapse-link">
+									<i class="fa fa-chevron-up"></i>
+								</a>
+								<a class="expand-link">
+									<i class="fa fa-expand"></i>
+								</a>
+								<a class="close-link">
+									<i class="fa fa-times"></i>
+								</a>
+							</div>
+							<div class="no-move"></div>
+						</div>
+						<div class="box-content">
+							<div id="drawItsClosedvsOpendITS" style="height: 200px; width: 100%;"></div>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-6">
+					<div class="box">
+						<div class="box-header">
+							<div class="box-name">
+								<i class="fa fa-search"></i>
+								<span>People Closing Tickets ITS</span>
+							</div>
+							<div class="box-icons">
+								<a class="collapse-link">
+									<i class="fa fa-chevron-up"></i>
+								</a>
+								<a class="expand-link">
+									<i class="fa fa-expand"></i>
+								</a>
+								<a class="close-link">
+									<i class="fa fa-times"></i>
+								</a>
+							</div>
+							<div class="no-move"></div>
+						</div>
+						<div class="box-content">
+							<div id="drawItsPeopleClosingTicketsITS" style="height: 200px;"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row" id="showITSOnlyRow2"style="display: none">
+				<div class="col-xs-12 col-sm-6">
+					<div class="box">
+						<div class="box-header">
+							<div class="box-name">
+								<i class="fa fa-search"></i>
+								<span>People Submitting Tickets ITS</span>
+							</div>
+							<div class="box-icons">
+								<a class="collapse-link">
+									<i class="fa fa-chevron-up"></i>
+								</a>
+								<a class="expand-link">
+									<i class="fa fa-expand"></i>
+								</a>
+								<a class="close-link">
+									<i class="fa fa-times"></i>
+								</a>
+							</div>
+							<div class="no-move"></div>
+						</div>
+						<div class="box-content">
+							<div id="drawItsPeopleSubmittingTicketsITS" style="height: 200px; width: 100%;"></div>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-6">
+					<div class="box">
+						<div class="box-header">
+							<div class="box-name">
+								<i class="fa fa-search"></i>
+								<span> General Situation ITS</span>
+							</div>
+							<div class="box-icons">
+								<a class="collapse-link">
+									<i class="fa fa-chevron-up"></i>
+								</a>
+								<a class="expand-link">
+									<i class="fa fa-expand"></i>
+								</a>
+								<a class="close-link">
+									<i class="fa fa-times"></i>
+								</a>
+							</div>
+							<div class="no-move"></div>
+						</div>
+						<div class="box-content">
+							<div id="drawItsGeneralSituationITS" style="height: 200px;"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row" id="showITSOnlyRow3"style="display: none">
+				<div class="col-xs-12">
+					<div class="box ui-draggable ui-droppable">
+						<div class="box-header">
+							<div class="box-name">
+								<span id="titleTableITS">Tags ITS</span>
+							</div>
+							<div class="box-icons">
+								<a class="collapse-link">
+									<i class="fa fa-chevron-up"></i>
+								</a>
+								<a class="expand-link">
+									<i class="fa fa-expand"></i>
+								</a>
+								<a class="close-link">
+									<i class="fa fa-times"></i>
+								</a>
+							</div>
+							<div class="no-move"></div>
+						</div>
+						<div class="box-content no-padding">
+							<table id="tableITS" class="table table-bordered table-striped table-hover table-heading table-datatable dataTable" aria-describedby="datatable-3_info">
+								<thead>
+									<tr role="row"><th class="sorting_asc" role="columnheader" tabindex="0" aria-controls="datatable-3" rowspan="1" colspan="1" style="width: 46px;" aria-sort="ascending" aria-label="Rate: activate to sort column descending">Orden</th><th class="sorting" role="columnheader" tabindex="0" aria-controls="datatable-3" rowspan="1" colspan="1" style="width: 50px;" aria-label="Distro: activate to sort column ascending">Tag</th><th class="sorting" role="columnheader" tabindex="0" aria-controls="datatable-3" rowspan="1" colspan="1" style="width: 200px;" aria-label="Votes: activate to sort column ascending">Total</th></tr>
+								</thead>
+								
+								<tfoot>
+									<tr><th rowspan="1" colspan="1">Orden</th><th rowspan="1" colspan="1">Tag</th><th rowspan="1" colspan="1">Total</th></tr>
+								</tfoot>
+								<tbody id="tableBodyITS" role="alert" aria-live="polite" aria-relevant="all">
+									<tr class="odd">
+										<td class="  sorting_1">1</td>
+										<td class=" ">Ubuntu</td>
+										<td class=" ">16%</td>
+									</tr>
+									<tr class="even">
+										<td class="  sorting_1">2</td>
+										<td class=" ">Debian</td>
+										<td class=" ">14.1%</td>
+									</tr>
+										<tr class="even">
+										<td class="  sorting_1">2</td>
+										<td class=" ">sfasfasdfasdfasdfa</td>
+										<td class=" ">14.1%</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row" id="showITSOnlyEvent"style="display: none">
+				<div class="col-xs-12">
+					<div class="box">
+						<div class="box-header">
+							<div class="box-name">
+								<i class="fa fa-search"></i>
+								<span>ITS</span>
+							</div>
+							<div class="box-icons">
+								<a class="collapse-link">
+									<i class="fa fa-chevron-up"></i>
+								</a>
+								<a class="expand-link">
+									<i class="fa fa-expand"></i>
+								</a>
+								<a class="close-link">
+									<i class="fa fa-times"></i>
+								</a>
+							</div>
+							<div class="no-move"></div>
+						</div>
+						<div class="box-content">
+							<div id="drawItsTagsITS" style="height: 200px;"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+<!-- 		------------------------------------------------------------------------------------------------------
+			------------------------------------  QAM PROPIO -----------------------------------------------------
+			------------------------------------------------------------------------------------------------------  -->
+			<div class="row" id="showQAMOnly"style="display: none">
+				<div class="col-xs-12 col-sm-6">
+					<div class="box">
+						<div class="box-header">
+							<div class="box-name">
+								<i class="fa fa-search"></i>
+								<span>Question Posted QAM</span>
+							</div>
+							<div class="box-icons">
+								<a class="collapse-link">
+									<i class="fa fa-chevron-up"></i>
+								</a>
+								<a class="expand-link">
+									<i class="fa fa-expand"></i>
+								</a>
+								<a class="close-link">
+									<i class="fa fa-times"></i>
+								</a>
+							</div>
+							<div class="no-move"></div>
+						</div>
+						<div class="box-content">
+							<div id="drawQamQuestionPostedQAM" style="height: 200px; width: 100%;"></div>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-6">
+					<div class="box">
+						<div class="box-header">
+							<div class="box-name">
+								<i class="fa fa-search"></i>
+								<span>Person Posting Questions QAM</span>
+							</div>
+							<div class="box-icons">
+								<a class="collapse-link">
+									<i class="fa fa-chevron-up"></i>
+								</a>
+								<a class="expand-link">
+									<i class="fa fa-expand"></i>
+								</a>
+								<a class="close-link">
+									<i class="fa fa-times"></i>
+								</a>
+							</div>
+							<div class="no-move"></div>
+						</div>
+						<div class="box-content">
+							<div id="drawQamPersonPostingQuestionsQAM" style="height: 200px;"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row" id="showQAMOnlyRow2"style="display: none">
+				<div class="col-xs-12 col-sm-6">
+					<div class="box">
+						<div class="box-header">
+							<div class="box-name">
+								<i class="fa fa-search"></i>
+								<span>Answers Posted QAM</span>
+							</div>
+							<div class="box-icons">
+								<a class="collapse-link">
+									<i class="fa fa-chevron-up"></i>
+								</a>
+								<a class="expand-link">
+									<i class="fa fa-expand"></i>
+								</a>
+								<a class="close-link">
+									<i class="fa fa-times"></i>
+								</a>
+							</div>
+							<div class="no-move"></div>
+						</div>
+						<div class="box-content">
+							<div id="drawQamAnswersPostedQAM" style="height: 200px; width: 100%;"></div>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-6">
+					<div class="box">
+						<div class="box-header">
+							<div class="box-name">
+								<i class="fa fa-search"></i>
+								<span> General Situation QAM</span>
+							</div>
+							<div class="box-icons">
+								<a class="collapse-link">
+									<i class="fa fa-chevron-up"></i>
+								</a>
+								<a class="expand-link">
+									<i class="fa fa-expand"></i>
+								</a>
+								<a class="close-link">
+									<i class="fa fa-times"></i>
+								</a>
+							</div>
+							<div class="no-move"></div>
+						</div>
+						<div class="box-content">
+							<div id="drawQamGeneralSituationQAM" style="height: 200px;"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row" id="showQAMOnlyRow3"style="display: none">
+				<div class="col-xs-12">
+					<div class="box ui-draggable ui-droppable">
+						<div class="box-header">
+							<div class="box-name">
+								<span id="titleTableQAM">Tags QAM</span>
+							</div>
+							<div class="box-icons">
+								<a class="collapse-link">
+									<i class="fa fa-chevron-up"></i>
+								</a>
+								<a class="expand-link">
+									<i class="fa fa-expand"></i>
+								</a>
+								<a class="close-link">
+									<i class="fa fa-times"></i>
+								</a>
+							</div>
+							<div class="no-move"></div>
+						</div>
+						<div class="box-content no-padding">
+							<table id="tableQAM" class="table table-bordered table-striped table-hover table-heading table-datatable dataTable" aria-describedby="datatable-3_info">
+								<thead>
+									<tr role="row"><th class="sorting_asc" role="columnheader" tabindex="0" aria-controls="datatable-3" rowspan="1" colspan="1" style="width: 46px;" aria-sort="ascending" aria-label="Rate: activate to sort column descending">Orden</th><th class="sorting" role="columnheader" tabindex="0" aria-controls="datatable-3" rowspan="1" colspan="1" style="width: 50px;" aria-label="Distro: activate to sort column ascending">Tag</th><th class="sorting" role="columnheader" tabindex="0" aria-controls="datatable-3" rowspan="1" colspan="1" style="width: 200px;" aria-label="Votes: activate to sort column ascending">Total</th></tr>
+								</thead>
+								
+								<tfoot>
+									<tr><th rowspan="1" colspan="1">Orden</th><th rowspan="1" colspan="1">Tag</th><th rowspan="1" colspan="1">Total</th></tr>
+								</tfoot>
+								<tbody id="tableBodyQAM" role="alert" aria-live="polite" aria-relevant="all">
+									<tr class="odd">
+										<td class="  sorting_1">1</td>
+										<td class=" ">Ubuntu</td>
+										<td class=" ">16%</td>
+									</tr>
+									<tr class="even">
+										<td class="  sorting_1">2</td>
+										<td class=" ">Debian</td>
+										<td class=" ">14.1%</td>
+									</tr>
+										<tr class="even">
+										<td class="  sorting_1">2</td>
+										<td class=" ">sfasfasdfasdfasdfa</td>
+										<td class=" ">14.1%</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row" id="showQAMOnlyEvent"style="display: none">
+				<div class="col-xs-12">
+					<div class="box">
+						<div class="box-header">
+							<div class="box-name">
+								<i class="fa fa-search"></i>
+								<span>Questions Forums</span>
+							</div>
+							<div class="box-icons">
+								<a class="collapse-link">
+									<i class="fa fa-chevron-up"></i>
+								</a>
+								<a class="expand-link">
+									<i class="fa fa-expand"></i>
+								</a>
+								<a class="close-link">
+									<i class="fa fa-times"></i>
+								</a>
+							</div>
+							<div class="no-move"></div>
+						</div>
+						<div class="box-content">
+							<div id="drawQamTagsQAM" style="height: 200px;"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+<!-- 		------------------------------------------------------------------------------------------------------
+			------------------------------------  MLS PROPIO -----------------------------------------------------
+			------------------------------------------------------------------------------------------------------  -->
+			<div class="row" id="showMLSOnly"style="display: none">
+				<div class="col-xs-12 col-sm-6">
+					<div class="box">
+						<div class="box-header">
+							<div class="box-name">
+								<i class="fa fa-search"></i>
+								<span>Sent MLS</span>
+							</div>
+							<div class="box-icons">
+								<a class="collapse-link">
+									<i class="fa fa-chevron-up"></i>
+								</a>
+								<a class="expand-link">
+									<i class="fa fa-expand"></i>
+								</a>
+								<a class="close-link">
+									<i class="fa fa-times"></i>
+								</a>
+							</div>
+							<div class="no-move"></div>
+						</div>
+						<div class="box-content">
+							<div id="drawMlsSentMLS" style="height: 200px; width: 100%;"></div>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-6">
+					<div class="box">
+						<div class="box-header">
+							<div class="box-name">
+								<i class="fa fa-search"></i>
+								<span>Senders MLS</span>
+							</div>
+							<div class="box-icons">
+								<a class="collapse-link">
+									<i class="fa fa-chevron-up"></i>
+								</a>
+								<a class="expand-link">
+									<i class="fa fa-expand"></i>
+								</a>
+								<a class="close-link">
+									<i class="fa fa-times"></i>
+								</a>
+							</div>
+							<div class="no-move"></div>
+						</div>
+						<div class="box-content">
+							<div id="drawMlsSendersMLS" style="height: 200px;"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row" id="showMLSOnlyRow2"style="display: none">
+				<div class="col-xs-12 col-sm-6">
+					<div class="box">
+						<div class="box-header">
+							<div class="box-name">
+								<i class="fa fa-search"></i>
+								<span>Sent Responde vs Senders Response</span>
+							</div>
+							<div class="box-icons">
+								<a class="collapse-link">
+									<i class="fa fa-chevron-up"></i>
+								</a>
+								<a class="expand-link">
+									<i class="fa fa-expand"></i>
+								</a>
+								<a class="close-link">
+									<i class="fa fa-times"></i>
+								</a>
+							</div>
+							<div class="no-move"></div>
+						</div>
+						<div class="box-content">
+							<div id="drawMlsSentResponseSendersResponseMLS" style="height: 200px; width: 100%;"></div>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-6">
+					<div class="box">
+						<div class="box-header">
+							<div class="box-name">
+								<i class="fa fa-search"></i>
+								<span> General Situation MLS</span>
+							</div>
+							<div class="box-icons">
+								<a class="collapse-link">
+									<i class="fa fa-chevron-up"></i>
+								</a>
+								<a class="expand-link">
+									<i class="fa fa-expand"></i>
+								</a>
+								<a class="close-link">
+									<i class="fa fa-times"></i>
+								</a>
+							</div>
+							<div class="no-move"></div>
+						</div>
+						<div class="box-content">
+							<div id="drawMlsGeneralSituationMLS" style="height: 200px;"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row" id="showMLSOnlyRow3"style="display: none">
+				<div class="col-xs-12">
+					<div class="box ui-draggable ui-droppable">
+						<div class="box-header">
+							<div class="box-name">
+								<span id="titleTableQAM">Tags MLS</span>
+							</div>
+							<div class="box-icons">
+								<a class="collapse-link">
+									<i class="fa fa-chevron-up"></i>
+								</a>
+								<a class="expand-link">
+									<i class="fa fa-expand"></i>
+								</a>
+								<a class="close-link">
+									<i class="fa fa-times"></i>
+								</a>
+							</div>
+							<div class="no-move"></div>
+						</div>
+						<div class="box-content no-padding">
+							<table id="tableMLS" class="table table-bordered table-striped table-hover table-heading table-datatable dataTable" aria-describedby="datatable-3_info">
+								<thead>
+									<tr role="row"><th class="sorting_asc" role="columnheader" tabindex="0" aria-controls="datatable-3" rowspan="1" colspan="1" style="width: 46px;" aria-sort="ascending" aria-label="Rate: activate to sort column descending">Orden</th><th class="sorting" role="columnheader" tabindex="0" aria-controls="datatable-3" rowspan="1" colspan="1" style="width: 50px;" aria-label="Distro: activate to sort column ascending">Tag</th><th class="sorting" role="columnheader" tabindex="0" aria-controls="datatable-3" rowspan="1" colspan="1" style="width: 200px;" aria-label="Votes: activate to sort column ascending">Total</th></tr>
+								</thead>
+								
+								<tfoot>
+									<tr><th rowspan="1" colspan="1">Orden</th><th rowspan="1" colspan="1">Tag</th><th rowspan="1" colspan="1">Total</th></tr>
+								</tfoot>
+								<tbody id="tableBodyMLS" role="alert" aria-live="polite" aria-relevant="all">
+									<tr class="odd">
+										<td class="  sorting_1">1</td>
+										<td class=" ">Ubuntu</td>
+										<td class=" ">16%</td>
+									</tr>
+									<tr class="even">
+										<td class="  sorting_1">2</td>
+										<td class=" ">Debian</td>
+										<td class=" ">14.1%</td>
+									</tr>
+										<tr class="even">
+										<td class="  sorting_1">2</td>
+										<td class=" ">sfasfasdfasdfasdfa</td>
+										<td class=" ">14.1%</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row" id="showMLSOnlyEvent"style="display: none">
+				<div class="col-xs-12">
+					<div class="box">
+						<div class="box-header">
+							<div class="box-name">
+								<i class="fa fa-search"></i>
+								<span>Mailing List</span>
+							</div>
+							<div class="box-icons">
+								<a class="collapse-link">
+									<i class="fa fa-chevron-up"></i>
+								</a>
+								<a class="expand-link">
+									<i class="fa fa-expand"></i>
+								</a>
+								<a class="close-link">
+									<i class="fa fa-times"></i>
+								</a>
+							</div>
+							<div class="no-move"></div>
+						</div>
+						<div class="box-content">
+							<div id="drawMlsTagsMLS" style="height: 200px;"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+<!--        ------------------------------------------------------------------------------------------------------
+			------------------------------------  SCR PROPIO -----------------------------------------------------
+			------------------------------------------------------------------------------------------------------ -->
+			
+			<div class="row" id="showSCROnly"style="display: none">
+				<div class="col-xs-12 col-sm-6">
+					<div class="box">
+						<div class="box-header">
+							<div class="box-name">
+								<i class="fa fa-search"></i>
+								<span>Reviews Pending SCR</span>
+							</div>
+							<div class="box-icons">
+								<a class="collapse-link">
+									<i class="fa fa-chevron-up"></i>
+								</a>
+								<a class="expand-link">
+									<i class="fa fa-expand"></i>
+								</a>
+								<a class="close-link">
+									<i class="fa fa-times"></i>
+								</a>
+							</div>
+							<div class="no-move"></div>
+						</div>
+						<div class="box-content">
+							<div id="drawScrReviewsPendingSCR" style="height: 200px; width: 100%;"></div>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-6">
+					<div class="box">
+						<div class="box-header">
+							<div class="box-name">
+								<i class="fa fa-search"></i>
+								<span> Reviews Submitted vs Merged vs Abandoned SCR</span>
+							</div>
+							<div class="box-icons">
+								<a class="collapse-link">
+									<i class="fa fa-chevron-up"></i>
+								</a>
+								<a class="expand-link">
+									<i class="fa fa-expand"></i>
+								</a>
+								<a class="close-link">
+									<i class="fa fa-times"></i>
+								</a>
+							</div>
+							<div class="no-move"></div>
+						</div>
+						<div class="box-content">
+							<div id="drawScrReviewsSubmittedVsMergedVsAbandonedSCR" style="height: 200px;"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row" id="showSCROnlyRow2"style="display: none">>
+				<div class="col-xs-12">
+					<div class="box ui-draggable ui-droppable">
+						<div class="box-header">
+							<div class="box-name">
+								<span id="titleTableSCR">Tags SCR</span>
+							</div>
+							<div class="box-icons">
+								<a class="collapse-link">
+									<i class="fa fa-chevron-up"></i>
+								</a>
+								<a class="expand-link">
+									<i class="fa fa-expand"></i>
+								</a>
+								<a class="close-link">
+									<i class="fa fa-times"></i>
+								</a>
+							</div>
+							<div class="no-move"></div>
+						</div>
+						<div class="box-content no-padding">
+							<table id="tableSCR" class="table table-bordered table-striped table-hover table-heading table-datatable dataTable" aria-describedby="datatable-3_info">
+								<thead>
+									<tr role="row"><th class="sorting_asc" role="columnheader" tabindex="0" aria-controls="datatable-3" rowspan="1" colspan="1" style="width: 46px;" aria-sort="ascending" aria-label="Rate: activate to sort column descending">Orden</th><th class="sorting" role="columnheader" tabindex="0" aria-controls="datatable-3" rowspan="1" colspan="1" style="width: 50px;" aria-label="Distro: activate to sort column ascending">Tag</th><th class="sorting" role="columnheader" tabindex="0" aria-controls="datatable-3" rowspan="1" colspan="1" style="width: 200px;" aria-label="Votes: activate to sort column ascending">Total</th></tr>
+								</thead>
+								
+								<tfoot>
+									<tr><th rowspan="1" colspan="1">Orden</th><th rowspan="1" colspan="1">Tag</th><th rowspan="1" colspan="1">Total</th></tr>
+								</tfoot>
+								<tbody id="tableBodySCR" role="alert" aria-live="polite" aria-relevant="all">
+									<tr class="odd">
+										<td class="  sorting_1">1</td>
+										<td class=" ">Ubuntu</td>
+										<td class=" ">16%</td>
+									</tr>
+									<tr class="even">
+										<td class="  sorting_1">2</td>
+										<td class=" ">Debian</td>
+										<td class=" ">14.1%</td>
+									</tr>
+										<tr class="even">
+										<td class="  sorting_1">2</td>
+										<td class=" ">sfasfasdfasdfasdfa</td>
+										<td class=" ">14.1%</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row" id="showSCROnlyEvent"style="display: none">>
+				<div class="col-xs-12">
+					<div class="box">
+						<div class="box-header">
+							<div class="box-name">
+								<i class="fa fa-search"></i>
+								<span>Source Code Review</span>
+							</div>
+							<div class="box-icons">
+								<a class="collapse-link">
+									<i class="fa fa-chevron-up"></i>
+								</a>
+								<a class="expand-link">
+									<i class="fa fa-expand"></i>
+								</a>
+								<a class="close-link">
+									<i class="fa fa-times"></i>
+								</a>
+							</div>
+							<div class="no-move"></div>
+						</div>
+						<div class="box-content">
+							<div id="drawScrTagsSCR" style="height: 200px;"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+<!-- 		------------------------------------------------------------------------------------------------------
+			------------------------------------  ABSTRACT-- -----------------------------------------------------
+			------------------------------------------------------------------------------------------------------ -->		
+			<ul class="nav nav-tabs" id="showMenuTabAbstract" style="display: none">
+				<li class="active"><a data-toggle="tab" href="#tabSCMAbstract">SCM</a></li>
+				<li><a data-toggle="tab" href="#tabSCRAbstract">SCR</a></li>
+				<li><a data-toggle="tab" href="#tabITSAbstract">ITS</a></li>
+				<li><a data-toggle="tab" href="#tabQAMAbstract">QAM</a></li>
+				<li><a data-toggle="tab" href="#tabMLSAbstract">MLS</a></li>
+				<li><a data-toggle="tab" href="#tabIRCAbstract">IRC</a></li>
+			</ul><br>
+			
+			<div class="tab-content">	
+				<div id="tabSCMAbstract" class="tab-pane fade in active">			
+					<div class="row" id="showAbstracSCM"style="display: none">
+						<div class="col-xs-12">
+							<div class="box ui-draggable ui-droppable">
+								<div class="box-header">
+									<div class="box-name">
+										<span id="titleTableSCMAbstrac">Abstract SCM</span>
+									</div>
+									<div class="box-icons">
+										<a class="collapse-link">
+											<i class="fa fa-chevron-up"></i>
+										</a>
+										<a class="expand-link">
+											<i class="fa fa-expand"></i>
+										</a>
+										<a class="close-link">
+											<i class="fa fa-times"></i>
+										</a>
+									</div>
+									<div class="no-move"></div>
+								</div>
+								<div class="box-content no-padding">
+									<table id="tableSCMAbstrac" class="table table-bordered table-striped table-hover table-heading table-datatable dataTable" aria-describedby="datatable-3_info">
+										<thead>
+											<tr role="row"><th class="sorting_asc" role="columnheader" tabindex="0" aria-controls="datatable-3" rowspan="1" colspan="1" style="width: 46px;" aria-sort="ascending" aria-label="Rate: activate to sort column descending">Orden</th><th class="sorting" role="columnheader" tabindex="0" aria-controls="datatable-3" rowspan="1" colspan="1" style="width: 50px;" aria-label="Distro: activate to sort column ascending">Tag</th><th class="sorting" role="columnheader" tabindex="0" aria-controls="datatable-3" rowspan="1" colspan="1" style="width: 200px;" aria-label="Votes: activate to sort column ascending">Total</th></tr>
+										</thead>
+										
+										<tfoot>
+											<tr><th rowspan="1" colspan="1">Orden</th><th rowspan="1" colspan="1">Tag</th><th rowspan="1" colspan="1">Total</th></tr>
+										</tfoot>
+										<tbody id="tableBodySCMAbstrac" role="alert" aria-live="polite" aria-relevant="all">
+											<tr class="odd">
+												<td class="  sorting_1">1</td>
+												<td class=" ">Ubuntu</td>
+												<td class=" ">16%</td>
+											</tr>
+											<tr class="even">
+												<td class="  sorting_1">2</td>
+												<td class=" ">Debian</td>
+												<td class=" ">14.1%</td>
+											</tr>
+												<tr class="even">
+												<td class="  sorting_1">2</td>
+												<td class=" ">sfasfasdfasdfasdfa</td>
+												<td class=" ">14.1%</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row" id="showAbstracSCMRow2"style="display: none">
+						<div class="col-xs-12">
+							<div class="box">
+								<div class="box-header">
+									<div class="box-name">
+										<i class="fa fa-search"></i>
+										<span>Abstract SCM</span>
+									</div>
+									<div class="box-icons">
+										<a class="collapse-link">
+											<i class="fa fa-chevron-up"></i>
+										</a>
+										<a class="expand-link">
+											<i class="fa fa-expand"></i>
+										</a>
+										<a class="close-link">
+											<i class="fa fa-times"></i>
+										</a>
+									</div>
+									<div class="no-move"></div>
+								</div>
+								<div class="box-content">
+									<div id="drawScmAbstract" style="height: 200px;"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="tabSCRAbstract" class="tab-pane fade in active">
+					<div class="row"id="showAbstracSCR"style="display: none">
+						<div class="col-xs-12">
+							<div class="box ui-draggable ui-droppable">
+								<div class="box-header">
+									<div class="box-name">
+										<span id="titleTableSCRAbstrac">Abstract SCR</span>
+									</div>
+									<div class="box-icons">
+										<a class="collapse-link">
+											<i class="fa fa-chevron-up"></i>
+										</a>
+										<a class="expand-link">
+											<i class="fa fa-expand"></i>
+										</a>
+										<a class="close-link">
+											<i class="fa fa-times"></i>
+										</a>
+									</div>
+									<div class="no-move"></div>
+								</div>
+								<div class="box-content no-padding">
+									<table id="tableSCRAbstrac" class="table table-bordered table-striped table-hover table-heading table-datatable dataTable" aria-describedby="datatable-3_info">
+										<thead>
+											<tr role="row"><th class="sorting_asc" role="columnheader" tabindex="0" aria-controls="datatable-3" rowspan="1" colspan="1" style="width: 46px;" aria-sort="ascending" aria-label="Rate: activate to sort column descending">Orden</th><th class="sorting" role="columnheader" tabindex="0" aria-controls="datatable-3" rowspan="1" colspan="1" style="width: 50px;" aria-label="Distro: activate to sort column ascending">Tag</th><th class="sorting" role="columnheader" tabindex="0" aria-controls="datatable-3" rowspan="1" colspan="1" style="width: 200px;" aria-label="Votes: activate to sort column ascending">Total</th></tr>
+										</thead>
+										
+										<tfoot>
+											<tr><th rowspan="1" colspan="1">Orden</th><th rowspan="1" colspan="1">Tag</th><th rowspan="1" colspan="1">Total</th></tr>
+										</tfoot>
+										<tbody id="tableBodySCRAbstrac" role="alert" aria-live="polite" aria-relevant="all">
+											<tr class="odd">
+												<td class="  sorting_1">1</td>
+												<td class=" ">Ubuntu</td>
+												<td class=" ">16%</td>
+											</tr>
+											<tr class="even">
+												<td class="  sorting_1">2</td>
+												<td class=" ">Debian</td>
+												<td class=" ">14.1%</td>
+											</tr>
+												<tr class="even">
+												<td class="  sorting_1">2</td>
+												<td class=" ">sfasfasdfasdfasdfa</td>
+												<td class=" ">14.1%</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row" id="showAbstracSCRRow2"style="display: none">
+						<div class="col-xs-12">
+							<div class="box">
+								<div class="box-header">
+									<div class="box-name">
+										<i class="fa fa-search"></i>
+										<span>Abstract SCR</span>
+									</div>
+									<div class="box-icons">
+										<a class="collapse-link">
+											<i class="fa fa-chevron-up"></i>
+										</a>
+										<a class="expand-link">
+											<i class="fa fa-expand"></i>
+										</a>
+										<a class="close-link">
+											<i class="fa fa-times"></i>
+										</a>
+									</div>
+									<div class="no-move"></div>
+								</div>
+								<div class="box-content">
+									<div id="drawScrAbstract" style="height: 200px;"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="tabITSAbstract" class="tab-pane fade in active">
+					<div class="row" id="showAbstracITS"style="display: none">
+						<div class="col-xs-12">
+							<div class="box ui-draggable ui-droppable">
+								<div class="box-header">
+									<div class="box-name">
+										<span id="titleTableITSAbstrac">Abstract ITS</span>
+									</div>
+									<div class="box-icons">
+										<a class="collapse-link">
+											<i class="fa fa-chevron-up"></i>
+										</a>
+										<a class="expand-link">
+											<i class="fa fa-expand"></i>
+										</a>
+										<a class="close-link">
+											<i class="fa fa-times"></i>
+										</a>
+									</div>
+									<div class="no-move"></div>
+								</div>
+								<div class="box-content no-padding">
+									<table id="tableITSAbstrac" class="table table-bordered table-striped table-hover table-heading table-datatable dataTable" aria-describedby="datatable-3_info">
+										<thead>
+											<tr role="row"><th class="sorting_asc" role="columnheader" tabindex="0" aria-controls="datatable-3" rowspan="1" colspan="1" style="width: 46px;" aria-sort="ascending" aria-label="Rate: activate to sort column descending">Orden</th><th class="sorting" role="columnheader" tabindex="0" aria-controls="datatable-3" rowspan="1" colspan="1" style="width: 50px;" aria-label="Distro: activate to sort column ascending">Tag</th><th class="sorting" role="columnheader" tabindex="0" aria-controls="datatable-3" rowspan="1" colspan="1" style="width: 200px;" aria-label="Votes: activate to sort column ascending">Total</th></tr>
+										</thead>
+										
+										<tfoot>
+											<tr><th rowspan="1" colspan="1">Orden</th><th rowspan="1" colspan="1">Tag</th><th rowspan="1" colspan="1">Total</th></tr>
+										</tfoot>
+										<tbody id="tableBodyITSAbstrac" role="alert" aria-live="polite" aria-relevant="all">
+											<tr class="odd">
+												<td class="  sorting_1">1</td>
+												<td class=" ">Ubuntu</td>
+												<td class=" ">16%</td>
+											</tr>
+											<tr class="even">
+												<td class="  sorting_1">2</td>
+												<td class=" ">Debian</td>
+												<td class=" ">14.1%</td>
+											</tr>
+												<tr class="even">
+												<td class="  sorting_1">2</td>
+												<td class=" ">sfasfasdfasdfasdfa</td>
+												<td class=" ">14.1%</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row" id="showAbstracITSRow2"style="display: none">
+						<div class="col-xs-12">
+							<div class="box">
+								<div class="box-header">
+									<div class="box-name">
+										<i class="fa fa-search"></i>
+										<span>Abstract ITS</span>
+									</div>
+									<div class="box-icons">
+										<a class="collapse-link">
+											<i class="fa fa-chevron-up"></i>
+										</a>
+										<a class="expand-link">
+											<i class="fa fa-expand"></i>
+										</a>
+										<a class="close-link">
+											<i class="fa fa-times"></i>
+										</a>
+									</div>
+									<div class="no-move"></div>
+								</div>
+								<div class="box-content">
+									<div id="drawItsAbstract" style="height: 200px;"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="tabQAMAbstract" class="tab-pane fade in active">
+					<div class="row" id="showAbstracQAM"style="display: none">
+						<div class="col-xs-12">
+							<div class="box ui-draggable ui-droppable">
+								<div class="box-header">
+									<div class="box-name">
+										<span id="titleTableQAMAbstrac">Abstract QAM</span>
+									</div>
+									<div class="box-icons">
+										<a class="collapse-link">
+											<i class="fa fa-chevron-up"></i>
+										</a>
+										<a class="expand-link">
+											<i class="fa fa-expand"></i>
+										</a>
+										<a class="close-link">
+											<i class="fa fa-times"></i>
+										</a>
+									</div>
+									<div class="no-move"></div>
+								</div>
+								<div class="box-content no-padding">
+									<table id="tableQAMAbstrac" class="table table-bordered table-striped table-hover table-heading table-datatable dataTable" aria-describedby="datatable-3_info">
+										<thead>
+											<tr role="row"><th class="sorting_asc" role="columnheader" tabindex="0" aria-controls="datatable-3" rowspan="1" colspan="1" style="width: 46px;" aria-sort="ascending" aria-label="Rate: activate to sort column descending">Orden</th><th class="sorting" role="columnheader" tabindex="0" aria-controls="datatable-3" rowspan="1" colspan="1" style="width: 50px;" aria-label="Distro: activate to sort column ascending">Tag</th><th class="sorting" role="columnheader" tabindex="0" aria-controls="datatable-3" rowspan="1" colspan="1" style="width: 200px;" aria-label="Votes: activate to sort column ascending">Total</th></tr>
+										</thead>
+										
+										<tfoot>
+											<tr><th rowspan="1" colspan="1">Orden</th><th rowspan="1" colspan="1">Tag</th><th rowspan="1" colspan="1">Total</th></tr>
+										</tfoot>
+										<tbody id="tableBodyQAMAbstrac" role="alert" aria-live="polite" aria-relevant="all">
+											<tr class="odd">
+												<td class="  sorting_1">1</td>
+												<td class=" ">Ubuntu</td>
+												<td class=" ">16%</td>
+											</tr>
+											<tr class="even">
+												<td class="  sorting_1">2</td>
+												<td class=" ">Debian</td>
+												<td class=" ">14.1%</td>
+											</tr>
+												<tr class="even">
+												<td class="  sorting_1">2</td>
+												<td class=" ">sfasfasdfasdfasdfa</td>
+												<td class=" ">14.1%</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row"id="showAbstracQAMRow2"style="display: none">
+						<div class="col-xs-12">
+							<div class="box">
+								<div class="box-header">
+									<div class="box-name">
+										<i class="fa fa-search"></i>
+										<span>Abstract QAM</span>
+									</div>
+									<div class="box-icons">
+										<a class="collapse-link">
+											<i class="fa fa-chevron-up"></i>
+										</a>
+										<a class="expand-link">
+											<i class="fa fa-expand"></i>
+										</a>
+										<a class="close-link">
+											<i class="fa fa-times"></i>
+										</a>
+									</div>
+									<div class="no-move"></div>
+								</div>
+								<div class="box-content">
+									<div id="drawQamAbstract" style="height: 200px;"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="tabMLSAbstract" class="tab-pane fade in active">
+					<div class="row" id="showAbstracMLS"style="display: none">
+						<div class="col-xs-12">
+							<div class="box ui-draggable ui-droppable">
+								<div class="box-header">
+									<div class="box-name">
+										<span id="titleTableMLSAbstrac">Abstract MLS</span>
+									</div>
+									<div class="box-icons">
+										<a class="collapse-link">
+											<i class="fa fa-chevron-up"></i>
+										</a>
+										<a class="expand-link">
+											<i class="fa fa-expand"></i>
+										</a>
+										<a class="close-link">
+											<i class="fa fa-times"></i>
+										</a>
+									</div>
+									<div class="no-move"></div>
+								</div>
+								<div class="box-content no-padding">
+									<table id="tableMLSAbstrac" class="table table-bordered table-striped table-hover table-heading table-datatable dataTable" aria-describedby="datatable-3_info">
+										<thead>
+											<tr role="row"><th class="sorting_asc" role="columnheader" tabindex="0" aria-controls="datatable-3" rowspan="1" colspan="1" style="width: 46px;" aria-sort="ascending" aria-label="Rate: activate to sort column descending">Orden</th><th class="sorting" role="columnheader" tabindex="0" aria-controls="datatable-3" rowspan="1" colspan="1" style="width: 50px;" aria-label="Distro: activate to sort column ascending">Tag</th><th class="sorting" role="columnheader" tabindex="0" aria-controls="datatable-3" rowspan="1" colspan="1" style="width: 200px;" aria-label="Votes: activate to sort column ascending">Total</th></tr>
+										</thead>
+										
+										<tfoot>
+											<tr><th rowspan="1" colspan="1">Orden</th><th rowspan="1" colspan="1">Tag</th><th rowspan="1" colspan="1">Total</th></tr>
+										</tfoot>
+										<tbody id="tableBodyMLSAbstrac" role="alert" aria-live="polite" aria-relevant="all">
+											<tr class="odd">
+												<td class="  sorting_1">1</td>
+												<td class=" ">Ubuntu</td>
+												<td class=" ">16%</td>
+											</tr>
+											<tr class="even">
+												<td class="  sorting_1">2</td>
+												<td class=" ">Debian</td>
+												<td class=" ">14.1%</td>
+											</tr>
+												<tr class="even">
+												<td class="  sorting_1">2</td>
+												<td class=" ">sfasfasdfasdfasdfa</td>
+												<td class=" ">14.1%</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row" id="showAbstracMLSRow2"style="display: none">
+						<div class="col-xs-12">
+							<div class="box">
+								<div class="box-header">
+									<div class="box-name">
+										<i class="fa fa-search"></i>
+										<span>Abstract MLS</span>
+									</div>
+									<div class="box-icons">
+										<a class="collapse-link">
+											<i class="fa fa-chevron-up"></i>
+										</a>
+										<a class="expand-link">
+											<i class="fa fa-expand"></i>
+										</a>
+										<a class="close-link">
+											<i class="fa fa-times"></i>
+										</a>
+									</div>
+									<div class="no-move"></div>
+								</div>
+								<div class="box-content">
+									<div id="drawMlsAbstract" style="height: 200px;"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="tabIRCAbstract" class="tab-pane fade in active">
+					<div class="row" id="showAbstracIRC"style="display: none">
+						<div class="col-xs-12">
+							<div class="box ui-draggable ui-droppable">
+								<div class="box-header">
+									<div class="box-name">
+										<span id="titleTableIRCAbstrac">Abstract IRC</span>
+									</div>
+									<div class="box-icons">
+										<a class="collapse-link">
+											<i class="fa fa-chevron-up"></i>
+										</a>
+										<a class="expand-link">
+											<i class="fa fa-expand"></i>
+										</a>
+										<a class="close-link">
+											<i class="fa fa-times"></i>
+										</a>
+									</div>
+									<div class="no-move"></div>
+								</div>
+								<div class="box-content no-padding">
+									<table id="tableIRCAbstrac" class="table table-bordered table-striped table-hover table-heading table-datatable dataTable" aria-describedby="datatable-3_info">
+										<thead>
+											<tr role="row"><th class="sorting_asc" role="columnheader" tabindex="0" aria-controls="-3" rowspan="1" colspan="1" style="width: 46px;" aria-sort="ascending" aria-label="Rate: activate to sort column descending">Orden</th><th class="sorting" role="columnheader" tabindex="0" aria-controls="datatable-3" rowspan="1" colspan="1" style="width: 50px;" aria-label="Distro: activate to sort column ascending">Tag</th><th class="sorting" role="columnheader" tabindex="0" aria-controls="datatable-3" rowspan="1" colspan="1" style="width: 200px;" aria-label="Votes: activate to sort column ascending">Total</th></tr>
+										</thead>
+										
+										<tfoot>
+											<tr><th rowspan="1" colspan="1">Orden</th><th rowspan="1" colspan="1">Tag</th><th rowspan="1" colspan="1">Total</th></tr>
+										</tfoot>
+										<tbody id="tableBodyIRCAbstrac" role="alert" aria-live="polite" aria-relevant="all">
+											<tr class="odd">
+												<td class="  sorting_1">1</td>
+												<td class=" ">Ubuntu</td>
+												<td class=" ">16%</td>
+											</tr>
+											<tr class="even">
+												<td class="  sorting_1">2</td>
+												<td class=" ">Debian</td>
+												<td class=" ">14.1%</td>
+											</tr>
+												<tr class="even">
+												<td class="  sorting_1">2</td>
+												<td class=" ">sfasfasdfasdfasdfa</td>
+												<td class=" ">14.1%</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row" id="showAbstracIRCRow2"style="display: none">
+						<div class="col-xs-12">
+							<div class="box">
+								<div class="box-header">
+									<div class="box-name">
+										<i class="fa fa-search"></i>
+										<span>Abstract IRC</span>
+									</div>
+									<div class="box-icons">
+										<a class="collapse-link">
+											<i class="fa fa-chevron-up"></i>
+										</a>
+										<a class="expand-link">
+											<i class="fa fa-expand"></i>
+										</a>
+										<a class="close-link">
+											<i class="fa fa-times"></i>
+										</a>
+									</div>
+									<div class="no-move"></div>
+								</div>
+								<div class="box-content">
+									<div id="drawIrcAbstract" style="height: 200px;"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row" id="showCompInformation" style="display: none">
+						<div class="col-xs-12">
+							<div class="box">
+								<div class="box-header">
+									<div class="box-name">
+										<i class="fa fa-linux"></i>
+										<span>Avalaible Files To Draw</span>
+									</div>
+									<div class="box-icons">
+										<a class="collapse-link">
+											<i class="fa fa-chevron-up"></i>
+										</a>
+										<a class="expand-link">
+											<i class="fa fa-expand"></i>
+										</a>
+										<a class="close-link">
+											<i class="fa fa-times"></i>
+										</a>
+									</div>
+									<div class="no-move"></div>
+								</div>
+								<div class="box-content no-padding table-responsive">
+									<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="tableCompanies">
+										<thead>
+											<tr>
+												<th><label><input type="text" name="search_type_information" value="Search Type Information" class="search_init" /></label></th>
+												<th><label><input type="text" name="search_name" value="Search Name" class="search_init" /></label></th>
+												<th><label><input type="text" name="search_type_of_file" value="Search Type of File" class="search_init" /></label></th>
+												<th><label><input type="text" name="search_metrics" value="Search Metrics" class="search_init" /></label></th>
+												<th><label><input type="text" name="search_file_name" value="Search File Name" class="search_init" /></label></th>
+
+											</tr>
+										</thead>
+										<tbody id="tableBodyCompanies">
+											<tr>
+												<td>1</td>
+												<td>Ubuntu</td>
+												<td>16%</td>
+												<td><i class="fa fa-home"></i><a href="http://ubuntu.com" target="_blank">http://ubuntu.com</a></td>
+												<td style="display:none;"></td>
+											</tr>
+										</tbody>
+										<tfoot>
+											<tr>
+												<th>Type Information</th>
+												<th>Name</th>
+												<th>Type of File</th>
+												<th>Metrics</th>
+												<th>File Name</th>
+											</tr>
+										</tfoot>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- Div utilizado para enseñar el popup -->
+			<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+				<div class="modal-dialog modal-sm">
+					<div class="modal-content" style="font-family:arial,helvetica,sans-serif">
+
+					</div>
+				</div>
+			</div>	
+		</div>	
+	</div>
+	<!--End Content-->
+	</div>
+</div>
+<!--End Container-->
+
+</body>
+</html>

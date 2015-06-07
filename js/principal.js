@@ -384,7 +384,7 @@ $(document).ready(function(){
 		history.push("MenushowMLSRegress");
 		$("[id^='show']").css("display", "none")
 		$("[id^='showMLSOnly']").css("display", "block")	
-		$("[id^='showMLSOnlyEvent']").css("display", "block")
+		$("[id^='showMLSOnlyEvent']").css("display", "none")
 		if (painted.indexOf("MenushowMLS") < 0 ){
 			showMLS()
 			painted.push("MenushowMLS")

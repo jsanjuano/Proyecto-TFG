@@ -752,7 +752,7 @@ cargarfichero('mls-evolutionary.json','eventMlsSentMLS')
 					i = i-1;
 				}
 				//Añadimos la nueva serie que queremos 
-				arrayopened =datossimplesconcargafichero('json/mls-evolutionary.json.',"", identificador)
+				arrayopened =datossimplesconcargafichero('json/mls-evolutionary.json',"", identificador)
 				chart10.addSeries({
 					data: arrayopened[0],
 					name: arrayopened[6]

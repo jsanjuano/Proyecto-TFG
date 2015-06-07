@@ -950,7 +950,7 @@ function InformationCompanies(){
 	$( document ).on( "click", "#tableCompanies td", function(){
 		filaName = $(this).closest("tr").find('td:eq(4)').html();
 		type = $(this).closest("tr").find('td:eq(3)').html();
-		alert(filaName)
+		//alert(filaName+" "+type)
 		window.location.href = 'json/' + filaName;
 		//cargarfichero('irc-static.json','eventCompanies')
 		//$("#drawIrcAbstract").on("eventCompanies",function(event,trigger,data){	

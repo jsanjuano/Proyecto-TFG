@@ -730,7 +730,7 @@ cargarfichero('mls-evolutionary.json','eventMlsSentMLS')
 		options = pintargeneral(arraymls,"drawMlsTagsMLS")
 		var chart10 = new Highcharts.Chart(options);
 		//Disparamos un evento al pinchar en la tabla
-		$( document ).on( "click", "td", function(e){
+		$( document ).on( "click", "#tableMLS td", function(e){
 			identificador = $(this).closest("tr").find('td:eq(1)').html();
 			if (e.ctrlKey){
 				// Estamos pinchando con el control por lo tanto añadimos al char nuestra serie

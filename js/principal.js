@@ -47,6 +47,7 @@ $(document).ready(function(){
 	$("[id^='showITSGeneral']").css("display", "block")
 	$("[id^='showQAMGeneral']").css("display", "block")
 	$("[id^='showMLSGeneral']").css("display", "block")
+	setTimeout(ocultar(), 3000);
 	ocultar()
 	
 	//------------------------------------------------------------------------------------------------------

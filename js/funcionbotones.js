@@ -1,3 +1,6 @@
+/* Funcion que actualiza las tablas para que cargen los estilos
+y activen todas sus funciones */
+
 function update(identTabla){
 		function AllTables(){
 		TestTable3(identTabla);
@@ -15,7 +18,7 @@ function update(identTabla){
 		WinMove();
 	}
 	
-	function update2(identTabla){
+function update2(identTabla){
 		function AllTables(){
 		TestTable2(identTabla);
 			LoadSelect2Script(MakeSelect2);
@@ -31,6 +34,9 @@ function update(identTabla){
 		// Add Drag-n-Drop feature
 		WinMove();
 	}
+	
+/* Funcion utilizada cuando se hace click en la pestaña GENERAL, destro de ella
+se realizan la obtencion del fichero, el parseo de los datos y la representacion */
 	
 function showGeneral(){
 		/////-----------------------------SCM------------------------------------------------------/////
@@ -64,7 +70,7 @@ function showGeneral(){
 				json[1] = data;
 			})
 		).done(function() {
-			//si lo hemos conseguido actualizamos nuestros datos
+			//Levantamos un trigger
 			$("*").trigger("eventScmDemographicGeneral",["eventScmDemographicGeneral",json])
 		}).fail(function(){
 			//en caso de equivocarnos no nos olvidemos de colocar todo a 0
@@ -185,6 +191,9 @@ function showGeneral(){
 			var chart = new Highcharts.Chart(options);	
 		})  
 }
+/* Funcion utilizada cuando se hace click en la pestaña SCM, dentro de ella
+se realizan la obtencion del fichero, el parseo de los datos y la representacion 
+admite tres parametros por dependiendo de cual queramos activar para representar */
 
 function showBusiness(scm,its,mls){
 	//Para SCM
@@ -199,7 +208,6 @@ function showBusiness(scm,its,mls){
 		$("#drawScmAuthorPerComapnyBusiness").on("eventScmAuthorPerComapnyBusiness",function(event,trigger,data){
 			arrayempresasauthors = datosempresapiecompanies(data,'','authors_365','name')
 			options = pintarauthors3d(arrayempresasauthors,'drawScmAuthorPerComapnyBusiness')
-			// Aun no esta definidos los div donde meterlos
 			Highcharts.setOptions({
 				plotOptions: {
 					series: {
@@ -234,7 +242,6 @@ function showBusiness(scm,its,mls){
 		$("#drawItsClosedPerCompanyBusiness").on("eventItsClosedPerCompanyBusiness",function(event,trigger,data){
 			arrayempresasauthors = datosempresapiecompanies(data,'','closed_365','name')
 			options = pintarauthors3d(arrayempresasauthors,"drawItsClosedPerCompanyBusiness")
-			//Aun no esta definidos los div
 			Highcharts.setOptions({
 				plotOptions: {
 					series: {
@@ -263,7 +270,6 @@ function showBusiness(scm,its,mls){
 		$("#drawMlsSendersPerCompanyBusiness").on("eventMlsSendersPerCompanyBusiness",function(event,trigger,data){
 			arrayempresascommits = datosempresapiecompanies(data,'','senders_365','name')
 			options = pintarauthors3d(arrayempresascommits,"drawMlsSendersPerCompanyBusiness")
-			//Aun no esta definido
 			 Highcharts.setOptions({
 				plotOptions: {
 					series: {
@@ -279,27 +285,7 @@ function showBusiness(scm,its,mls){
 			})
 			var chart9 = new Highcharts.Chart(options);
 		})	
-		//No se que representar
-	/* 	cargarfichero('scm-companies-commits-summary.json','eventMlsVacioBusiness')
-		$("#drawMlsVacioBusiness").on("eventMlsVacioBusiness",function(event,trigger,data){
-			arrayempresasauthors = datosempresapie(data,'Authors per company')
-			options = pintarauthors3d(arrayempresasauthors,'drawMlsVacioBusiness')
-			Highcharts.setOptions({
-				plotOptions: {
-					series: {
-						cursor: 'pointer',
-							events: {
-							click: function (event) {
-								empresa = event.point.name;
-								eventoempresa(empresa)
-							}
-						}
-					} 
-				}
-			})	
-			var chart10 = new Highcharts.Chart(options);
-		}) */
-
+		
 		cargarfichero('mls-evolutionary.json','eventMlsActiveCompaniesBusiness')
 		$("#drawMlsActiveCompaniesBusiness").on("eventMlsActiveCompaniesBusiness",function(event,trigger,data){
 			arraycompanies =datossimples(data,"", "companies")
@@ -308,6 +294,9 @@ function showBusiness(scm,its,mls){
 		})
 	 }
 }
+/* Funcion utilizada cuando se hace click en la pestaña DEMOGRAPHIC, dentro de ella
+se realizan la obtencion del fichero, el parseo de los datos y la representacion 
+admite tres parametros por dependiendo de cual queramos activar para representar */
 
 function showDemographic(scm,its,mls){
 
@@ -322,10 +311,9 @@ function showDemographic(scm,its,mls){
 				json[1] = data;
 			})
 		).done(function() {
-			//si lo hemos conseguido actualizamos nuestros datos
+			//Levantamos el trigger
 			$("*").trigger("eventScmDemographic",["eventScmDemographic",json])
 		}).fail(function(){
-			//en caso de equivocarnos no nos olvidemos de colocar todo a 0
 			alert("Error al cargar el fichero")
 		})
 		
@@ -370,10 +358,9 @@ function showDemographic(scm,its,mls){
 				json[1] = data;
 			})
 		).done(function() {
-			//si lo hemos conseguido actualizamos nuestros datos
+			//Levantamos un trigger
 			$("*").trigger("eventItsDemographic",["eventItsDemographic",json])
 		}).fail(function(){
-			//en caso de equivocarnos no nos olvidemos de colocar todo a 0
 			alert("Error al cargar el fichero para la demografia de Tickets")
 		})
 		$("#drawItsTicketsParticipantsDemographic").on("eventItsDemographic",function(event,trigger,json){
@@ -418,10 +405,9 @@ function showDemographic(scm,its,mls){
 				json[1] = data;
 			})
 		).done(function() {
-			//si lo hemos conseguido actualizamos nuestros datos
+			//Levantamos el trigger
 			$("*").trigger("eventMlsDemographic",["eventMlsDemographic",json])
 		}).fail(function(){
-			//en caso de equivocarnos no nos olvidemos de colocar todo a 0
 			alert("Error al cargar el fichero para la demografia de Tickets")
 		})
 		$("#drawMlsDemographic").on("eventMlsDemographic",function(event,trigger,json){
@@ -456,6 +442,8 @@ function showDemographic(scm,its,mls){
 		})
 	}
 }
+/* Funcion utilizada cuando se hace click en la pestaña SCM, dentro de ella
+se realizan la obtencion del fichero, el parseo de los datos y la representacion*/
 
 function showSCM(){
 	cargarfichero('scm-evolutionary.json','eventScmCommitsSCM')
@@ -464,20 +452,20 @@ function showSCM(){
 			options = pintargeneral(arraycommits,"drawScmCommitsSCM")
 			var chart3 = new Highcharts.Chart(options);	
 		})
-		cargarfichero('scm-evolutionary.json','eventScmAuthorSCM')
+	cargarfichero('scm-evolutionary.json','eventScmAuthorSCM')
 		$("#drawScmAuthorSCM").on("eventScmAuthorSCM",function(event,trigger,data){	
 			arrayaauthors =datossimples(data,"", "authors")
 			options = pintargeneral(arrayaauthors,"drawScmAuthorSCM")
 			var chart4 = new Highcharts.Chart(options);
 		})
-		cargarfichero('scm-evolutionary.json','eventScmFilesSCM')
+	cargarfichero('scm-evolutionary.json','eventScmFilesSCM')
 		$("#drawScmFilesSCM").on("eventScmFilesSCM",function(event,trigger,data){	
 			arrayfiles  =datossimples(data,"", "files")
 			options = pintargeneral(arrayfiles,"drawScmFilesSCM")
 			var chart5 = new Highcharts.Chart(options);
 		})
 		
-		cargarfichero('scm-evolutionary.json','eventScmGeneralSituationSCM')
+	cargarfichero('scm-evolutionary.json','eventScmGeneralSituationSCM')
 		$("#drawScmGeneralSituationSCM").on("eventScmGeneralSituationSCM",function(event,trigger,data){	
 			// Obtenemos los datos de la tabla
 			retorno = datostabla(data)
@@ -490,7 +478,7 @@ function showSCM(){
 			var chart9 = new Highcharts.Chart(options);
 			})
 			
-		cargarfichero('scm-evolutionary.json','eventScmAddedLinesRemovedLinesSCM')
+	cargarfichero('scm-evolutionary.json','eventScmAddedLinesRemovedLinesSCM')
 		$("#drawScmAddedLinesRemovedLinesSCM").on("eventScmAddedLinesRemovedLinesSCM",function(event,trigger,data){				
 			arrayadded_lines =datossimples(data,"", "added_lines")
 			arrayremoved_lines =datossimples(data,"", "removed_lines")
@@ -506,7 +494,7 @@ function showSCM(){
 		$( document ).on( "click", "#tableSCM td", function(e){
 			identificador = $(this).closest("tr").find('td:eq(1)').html();
 			if (e.ctrlKey){
-				// Estamos pinchando con el control por lo tanto añadimos al char nuestra serie
+				// Estamos pinchando con el control por lo tanto añadimos al chart a nuestra serie
 				// Para poder compararlas
 				arrayopened =datossimplesconcargafichero('json/scm-evolutionary.json',"", identificador)
 				chart10.addSeries({
@@ -534,9 +522,11 @@ function showSCM(){
 			$("[id^='showSCMOnlyEvent']").css("display", "block")
 		})
 }
+/* Funcion utilizada cuando se hace click en la pestaña ITS, dentro de ella
+se realizan la obtencion del fichero, el parseo de los datos y la representacion*/
 
 function showITS(){
-cargarfichero('its-evolutionary.json','eventItsClosedvsOpendITS')
+	cargarfichero('its-evolutionary.json','eventItsClosedvsOpendITS')
 		$("#drawItsClosedvsOpendITS").on("eventItsClosedvsOpendITS",function(event,trigger,datas){	
 			arrayclosed =datossimples(datas,"", "closed")
 			options = pintargeneral(arrayclosed,"drawItsClosedvsOpendITS")
@@ -547,19 +537,19 @@ cargarfichero('its-evolutionary.json','eventItsClosedvsOpendITS')
 				name: arrayopened[6]
 				})
 		})
-		cargarfichero('its-evolutionary.json','eventItsPeopleClosingTicketsITS')
+	cargarfichero('its-evolutionary.json','eventItsPeopleClosingTicketsITS')
 		$("#drawItsPeopleClosingTicketsITS").on("eventItsPeopleClosingTicketsITS",function(event,trigger,data){			
 			arrayclosed =datossimples(data,"", "closed")
 			options = pintargeneral(arrayclosed,"drawItsPeopleClosingTicketsITS")
 			var chart3 = new Highcharts.Chart(options); 
 		})
-		cargarfichero('its-evolutionary.json','eventItsPeopleSubmittingTicketsITS')
+	cargarfichero('its-evolutionary.json','eventItsPeopleSubmittingTicketsITS')
 		$("#drawItsPeopleSubmittingTicketsITS").on("eventItsPeopleSubmittingTicketsITS",function(event,trigger,data){	
 			arrayclosed =datossimples(data,"", "closed")
 			options = pintargeneral(arrayclosed,"drawItsPeopleSubmittingTicketsITS")
 			var chart3 = new Highcharts.Chart(options);
 		})
-		cargarfichero('its-evolutionary.json','eventItsGeneralSituationITS')
+	cargarfichero('its-evolutionary.json','eventItsGeneralSituationITS')
 		$("#drawItsGeneralSituationITS").on("eventItsGeneralSituationITS",function(event,trigger,data){	
 			// Obtenemos los datos de la tabla
 			retorno = datostabla(data)
@@ -609,27 +599,29 @@ cargarfichero('its-evolutionary.json','eventItsClosedvsOpendITS')
 		})
 
 }
+/* Funcion utilizada cuando se hace click en la pestaña QAM, dentro de ella
+se realizan la obtencion del fichero, el parseo de los datos y la representacion*/
 
 function showQAM(){
-cargarfichero('qaforums-evolutionary.json','eventQamQuestionPostedQAM')
+	cargarfichero('qaforums-evolutionary.json','eventQamQuestionPostedQAM')
 		$("#drawQamQuestionPostedQAM").on("eventQamQuestionPostedQAM",function(event,trigger,data){	
 			arrayqsent =datossimples(data,"", "qsent")
 			options = pintargeneral(arrayqsent,"drawQamQuestionPostedQAM")
 			var chart3 = new Highcharts.Chart(options);
 		})
-		cargarfichero('qaforums-evolutionary.json','eventQamPersonPostingQuestionsQAM')
+	cargarfichero('qaforums-evolutionary.json','eventQamPersonPostingQuestionsQAM')
 		$("#drawQamPersonPostingQuestionsQAM").on("eventQamPersonPostingQuestionsQAM",function(event,trigger,data){	
 			arrayclosed =datossimples(data,"", "qsenders")
 			options = pintargeneral(arrayclosed,"drawQamPersonPostingQuestionsQAM")
 			var chart3 = new Highcharts.Chart(options);
 		})
-		cargarfichero('qaforums-evolutionary.json','eventQamAnswersPostedQAM')
+	cargarfichero('qaforums-evolutionary.json','eventQamAnswersPostedQAM')
 		$("#drawQamAnswersPostedQAM").on("eventQamAnswersPostedQAM",function(event,trigger,data){	
 			arrayclosed =datossimples(data,"", "asent")
 			options = pintargeneral(arrayclosed,"drawQamAnswersPostedQAM")
 			var chart3 = new Highcharts.Chart(options);
 		})
-		cargarfichero('qaforums-evolutionary.json','eventQamGeneralSituationQAM')
+	cargarfichero('qaforums-evolutionary.json','eventQamGeneralSituationQAM')
 		$("#drawQamGeneralSituationQAM").on("eventQamGeneralSituationQAM",function(event,trigger,data){			
 			// Obtenemos los datos de la tabla
 			retorno = datostabla(data)
@@ -679,23 +671,25 @@ cargarfichero('qaforums-evolutionary.json','eventQamQuestionPostedQAM')
 		})
 
 }
+/* Funcion utilizada cuando se hace click en la pestaña MLS, dentro de ella
+se realizan la obtencion del fichero, el parseo de los datos y la representacion */
 
 function showMLS(){
-cargarfichero('mls-evolutionary.json','eventMlsSentMLS')
+	cargarfichero('mls-evolutionary.json','eventMlsSentMLS')
 		$("#drawMlsSentMLS").on("eventMlsSentMLS",function(event,trigger,data){	
 			arrayqsent =datossimples(data,"", "sent")
 			options = pintargeneral(arrayqsent,"drawMlsSentMLS")
 			var chart3 = new Highcharts.Chart(options);
 		})
 		
-		cargarfichero('mls-evolutionary.json','eventMlsSendersMLS')
+	cargarfichero('mls-evolutionary.json','eventMlsSendersMLS')
 		$("#drawMlsSendersMLS").on("eventMlsSendersMLS",function(event,trigger,data){	
 			arrayqsent =datossimples(data,"", "senders")
 			options = pintargeneral(arrayqsent,"drawMlsSendersMLS")
 			var chart3 = new Highcharts.Chart(options);
 		})
 		
-		cargarfichero('mls-evolutionary.json','eventMlsSentResponseSendersResponseMLS')
+	cargarfichero('mls-evolutionary.json','eventMlsSentResponseSendersResponseMLS')
 		$("#drawMlsSentResponseSendersResponseMLS").on("eventMlsSentResponseSendersResponseMLS",function(event,trigger,data){
 			arraypending =datossimples(data,"Sent Responde vs Senders Response", "sent_response")
 			options = pintargeneral(arraypending,"drawMlsSentResponseSendersResponseMLS")
@@ -712,7 +706,7 @@ cargarfichero('mls-evolutionary.json','eventMlsSentMLS')
 				})
 		})
 		
-		cargarfichero('mls-evolutionary.json','eventMlsGeneralSituationMLS')
+	cargarfichero('mls-evolutionary.json','eventMlsGeneralSituationMLS')
 		$("#drawMlsGeneralSituationMLS").on("eventMlsGeneralSituationMLS",function(event,trigger,data){			
 			// Obtenemos los datos de la tabla
 			retorno = datostabla(data)
@@ -761,15 +755,17 @@ cargarfichero('mls-evolutionary.json','eventMlsSentMLS')
 			$("[id^='showMLSOnlyEvent']").css("display", "block")
 		})
 }
+/* Funcion utilizada cuando se hace click en la pestaña SCR, dentro de ella
+se realizan la obtencion del fichero, el parseo de los datos y la representacion */
 
 function showSCR(){
-cargarfichero('scr-evolutionary.json','eventScrReviewsPendingSCR')
+	cargarfichero('scr-evolutionary.json','eventScrReviewsPendingSCR')
 		$("#drawScrReviewsPendingSCR").on("eventScrReviewsPendingSCR",function(event,trigger,data){	
 			arraypending =datossimples(data,"", "pending")
 			options = pintargeneral(arraypending,"drawScrReviewsPendingSCR")
 			var chart3 = new Highcharts.Chart(options); 
 		})
-		cargarfichero('scr-evolutionary.json','eventScrReviewsSubmittedVsMergedVsAbandonedSCR')
+	cargarfichero('scr-evolutionary.json','eventScrReviewsSubmittedVsMergedVsAbandonedSCR')
 		$("#drawScrReviewsSubmittedVsMergedVsAbandonedSCR").on("eventScrReviewsSubmittedVsMergedVsAbandonedSCR",function(event,trigger,data){
 			arraypending =datossimples(data,"", "submitted")
 			options = pintargeneral(arraypending,"drawScrReviewsSubmittedVsMergedVsAbandonedSCR")
@@ -786,7 +782,7 @@ cargarfichero('scr-evolutionary.json','eventScrReviewsPendingSCR')
 				})
 		})
 
-		cargarfichero('scr-evolutionary.json','eventScrGetDataSCR')
+	cargarfichero('scr-evolutionary.json','eventScrGetDataSCR')
 		$("#tableSCR").on("eventScrGetDataSCR",function(event,trigger,data){
 			// Obtenemos los datos de la tabla
 			retorno = datostabla(data)
@@ -835,6 +831,9 @@ cargarfichero('scr-evolutionary.json','eventScrReviewsPendingSCR')
 
 
 }
+/* Funcion utilizada cuando se hace click en la pestaña ABSTRACT, dentro de ella
+se realizan la obtencion del fichero, el parseo de los datos y la representacion 
+admite seis parametros por dependiendo de cual queramos activar para representar */
 
 function abstractInformation(scm,scr,its,qam,mls,irc){
 	if (scm == true){
@@ -844,7 +843,6 @@ function abstractInformation(scm,scr,its,qam,mls,irc){
 			options = pintarresumen(datos[0],"Resumen SCM",'drawScmAbstract')
 			chart9 = new Highcharts.Chart(options);
 			datostexto = datosresumentexto(data,"aaa")
-			console.log(datostexto[0])
 			rellenatabla(datostexto[0],"SCMAbstrac","Abstrac SCM")
 			//Actualizamos la tabla
 			update('tableSCMAbstrac')		
@@ -911,6 +909,9 @@ function abstractInformation(scm,scr,its,qam,mls,irc){
 		})
 	}
 }
+/* Funcion utilizada cuando se hace click en la pestaña INFORMATION COMPANIES, dentro de ella
+se realizan la obtencion del fichero, el parseo de los datos y la representacion */
+
 function InformationCompanies(){
 	$('#tableBodyCompanies').empty();
 	// Diccionary para poder realizar el fill
@@ -918,7 +919,7 @@ function InformationCompanies(){
 		key: ["com", "rep", "mls","scm","scr"],
 		value: ["Company", "Repository", "Mailing List Send", "Source Code Management","Source Code Review"]
 	};
-	// Procedimiento para leear de un fichero .txt linea a linea
+	// Procedimiento para leear de un fichero .xml linea a linea
 	var rawFile = new XMLHttpRequest();
     rawFile.open("GET", "prueba.xml", false);
     rawFile.onreadystatechange = function ()
@@ -950,14 +951,7 @@ function InformationCompanies(){
 	$( document ).on( "click", "#tableCompanies td", function(){
 		filaName = $(this).closest("tr").find('td:eq(4)').html();
 		type = $(this).closest("tr").find('td:eq(3)').html();
-		//alert(filaName+" "+type)
+		//Mostramos el contenido del fichero
 		window.location.href = 'json/' + filaName;
-		//cargarfichero('irc-static.json','eventCompanies')
-		//$("#drawIrcAbstract").on("eventCompanies",function(event,trigger,data){	
-			//datos = datosresumengrafica(data)
-			//options = pintarresumen(datos[0],"",'drawIrcAbstract')
-			//chart9 = new Highcharts.Chart(options);
-	
-		//})
 	})
 }

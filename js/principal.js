@@ -4,12 +4,6 @@ $(document).ready(function(){
 	//Nada mas entrar cargarmos la pestañaa general
 	history.push("MenushowGeneralRegress");
  	$("[id^='show']").css("display", "block")
-/*	$("[id^='showMenuTabGeneral']").css("display", "block")
-	$("[id^='showSCMGeneral']").css("display", "block")
-	$("[id^='showSCRGeneral']").css("display", "block")
-	$("[id^='showITSGeneral']").css("display", "block")
-	$("[id^='showQAMGeneral']").css("display", "block")
-	$("[id^='showMLSGeneral']").css("display", "block") */
 	painted.push("MenushowGeneral")
 	showGeneral() 
 	showSCM()
@@ -54,9 +48,18 @@ $(document).ready(function(){
 	$("[id^='showQAMGeneral']").css("display", "block")
 	$("[id^='showMLSGeneral']").css("display", "block")
 	ocultar()
+	
+	//------------------------------------------------------------------------------------------------------
+	//-------------- OCULTA EL DIV AUTOMATICAMENTE CUANDO LA PAGINA ESTA LISTA PARA SERVIR -----------------
+	//------------------------------------------------------------------------------------------------------
+	
 	function ocultar(){
 		if( $('#initialLoader').css('display') != 'none') $('#initialLoader').fadeOut("slow", function() {$(this).css("display", "none")});
 	}
+	
+	//------------------------------------------------------------------------------------------------------
+	//--------- GESTIONA CUANDO EL USUARIO HACE CLICK EN EL BOTON DE INFORMACION DE UNA GRAFICA ------------
+	//------------------------------------------------------------------------------------------------------
 	
 	// Inicializamos el lector de properties
 	messageResource.init({
@@ -76,20 +79,19 @@ $(document).ready(function(){
 		});
     });
 	
+	//------------------------------------------------------------------------------------------------------
+	//---------------GESTIONA CUANDO EL USUARIO HACE CLICK EN EL BOTON DE VOLVER ATRAS ---------------------
+	//------------------------------------------------------------------------------------------------------
 	
 	$('#regress').click(function(){
-		console.log("Longitud:" + history.length)
 		if (history.length == 1){
 		    //No hacemos nada el usuario no ha navegado
 		}
 		else{
-		 	 history.pop();
+		 	history.pop();
 			indice = history.length;
 			eventRegress = history[indice-1]
-			/* data = [] */
-			console.log(eventRegress)
 			$("*").trigger(eventRegress,[eventRegress])
-			console.log("eventDespuesTrigger")
 
 		}
 	})
@@ -97,8 +99,7 @@ $(document).ready(function(){
 	//---------------------------------------------- GENERAL -----------------------------------------------
 	//------------------------------------------------------------------------------------------------------ 
 	
-	$('#MenushowGeneral').click(function ejemplo(){
-		
+	$('#MenushowGeneral').click(function ejemplo(){	
 		history.push("MenushowGeneralRegress");
 		$("[id^='show']").css("display", "none")
 		$("[id^='showMenuTabGeneral']").css("display", "block")
@@ -111,8 +112,6 @@ $(document).ready(function(){
 			showGeneral()
 		}
 	})
-	
-	
 	
 	$('#moreInformationSCM').click(function(){
 		history.push("moreInformationSCMRegress");
@@ -180,7 +179,6 @@ $(document).ready(function(){
 			painted.push("moreInformationSCRAbstract")
 		}
 	})
-	
 	
 	$('#moreInformationITS').click(function(){
 		history.push("moreInformationITSRegress");		
@@ -307,28 +305,6 @@ $(document).ready(function(){
 		}
 	})
 	
-/* 	$('#tabSCMBusiness').click(function(){
-		$("[id^='showBusiness']").css("display", "block")
-		$("[id^='showBusinessEvent']").css("display", "none")
-		$("[id^='showBusinessITS']").css("display", "none")
-		$("[id^='showBusinessMLS']").css("display", "none")
-		
-	})
-	
-	$('#tabITSBusiness').click(function(){
-		$("[id^='showBusiness']").css("display", "block")
-		$("[id^='showBusinessEvent']").css("display", "none")
-		$("[id^='showBusinessSCM']").css("display", "none")
-		$("[id^='showBusinessMLS']").css("display", "none")
-	})
-	
-	$('#tabMLSBusiness').click(function(){
-		$("[id^='showBusiness']").css("display", "block")
-		$("[id^='showBusinessEvent']").css("display", "none")
-		$("[id^='showBusinessITS']").css("display", "none")
-		$("[id^='showBusinessSCM']").css("display", "none")
-	}) */
-	
 	//------------------------------------------------------------------------------------------------------
 	//------------------------------------  PARTE DE DEMOGRAPHIC--------------------------------------------
 	//------------------------------------------------------------------------------------------------------
@@ -346,6 +322,10 @@ $(document).ready(function(){
 		}
 	})
 	
+	//------------------------------------------------------------------------------------------------------
+	//------------------------------------  PARTE DE MENU SCM ----------------------------------------------
+	//------------------------------------------------------------------------------------------------------
+	
 	$('#MenushowSCM').click(function(){
 		history.push("MenushowSCMRegress");
 		$("[id^='show']").css("display", "none")
@@ -356,6 +336,10 @@ $(document).ready(function(){
 			painted.push("MenushowSCM")
 		}
 	})
+	
+	//------------------------------------------------------------------------------------------------------
+	//------------------------------------  PARTE DE MENU ITS ----------------------------------------------
+	//------------------------------------------------------------------------------------------------------
 	
 	$('#MenushowITS').click(function(){
 		ocultar()
@@ -369,6 +353,10 @@ $(document).ready(function(){
 		}
 	})
 	
+	//------------------------------------------------------------------------------------------------------
+	//------------------------------------  PARTE DE MENU QAM ----------------------------------------------
+	//------------------------------------------------------------------------------------------------------
+	
 	$('#MenushowQAM').click(function(){
 		history.push("MenushowQAMRegress");
 		$("[id^='show']").css("display", "none")
@@ -379,6 +367,10 @@ $(document).ready(function(){
 			painted.push("MenushowQAM")
 		}
 	})
+	
+	//------------------------------------------------------------------------------------------------------
+	//------------------------------------  PARTE DE MENU MLS ----------------------------------------------
+	//------------------------------------------------------------------------------------------------------
 	
 	$('#MenushowMLS').click(function(){
 		history.push("MenushowMLSRegress");
@@ -391,6 +383,10 @@ $(document).ready(function(){
 		}
 	})
 	
+	//------------------------------------------------------------------------------------------------------
+	//------------------------------------  PARTE DE MENU SCR ----------------------------------------------
+	//------------------------------------------------------------------------------------------------------
+	
 	$('#MenushowSCR').click(function(){
 		history.push("MenushowSCRRegress");
 		$("[id^='show']").css("display", "none")
@@ -402,6 +398,11 @@ $(document).ready(function(){
 			painted.push("MenushowSCR")
 		}
 	})
+	
+	//------------------------------------------------------------------------------------------------------
+	//------------------------------------  PARTE DE MENU ABSTRACT -----------------------------------------
+	//------------------------------------------------------------------------------------------------------
+	
 	 $("#Menuabstract").click( function () {
 		history.push("MenuabstractRegress");
 		$("[id^='show']").css("display", "none")
@@ -413,6 +414,10 @@ $(document).ready(function(){
 		}
 	}) 
 	
+	//------------------------------------------------------------------------------------------------------
+	//-------------------------------  PARTE DE MENU COM INFORMATION ---------------------------------------
+	//------------------------------------------------------------------------------------------------------
+	
 	$("#MenuCompInformation").click( function () {
 		history.push("MenuCompInformationRegress");
 		$("[id^='show']").css("display", "none")
@@ -423,67 +428,6 @@ $(document).ready(function(){
 		}		
 	})
 		
-	
-	$('#pestana8').click(function(){
-		$('#containergeneralempresas').css("display", "none")
-		$('#containerempresaunica').css("display", "none")
-		$('#containergeneraldemogradica').css("display", "none")
-		$('#containerscm').css("display", "none")
-		$('#containerscr').css("display", "none")
-		$('#containerits').css("display", "none")
-		$('#containergeneral').css("display", "none")
-		$('#filaempresaqam').css("display", "none")
-		$('#filaempresascm').css("display", "none")
-		$('#filaempresascr').css("display", "none")
-		$('#containerqam').css("display", "none")
-		$('#containermls').css("display", "none")
-		$('#containerresumen').css("display", "none")
-		$('#containerupload').css("display", "block")
-		$('#send').click(function(){
-			//Obtenemos el contenido el input text area
-			contenido = $('#json').val();
-			//Limpiamos el formulario
-			$("#formulario").empty()
-			//Parseamos el json para darle formato
-			try{
-				var contenido = $.parseJSON(contenido);
-				// Cargamos los checkboxes
-				parseador(contenido)
-				// Levantamos el evento para darle al boton representar
-				$( document ).on( "click", "#representar", function(){
-
-					//Recorremos el div para sacar los que estan marcados
-					primeravez = false;
-					var chart2;
-					$("#formulario input[type='checkbox']:checked").each(function(){
-						if (!primeravez){
-							key = $(this).attr('value')
-							titulo = $("#tittle").val()
-							arrayfirst =datossimples(contenido,titulo, key)
-							options = pintargeneral(arrayfirst,"pintarupload")
-							primeravez = true;
-							chart2 = new Highcharts.Chart(options);
-							$('#filaupload').css("display", "block")
-						}
-						else {
-							alert("entra segundo")
-							key = $(this).attr('value')
-							titulo = $("#tittle").val()
-							arraysecond =datossimples(contenido,titulo, key)
-							chart2.addSeries({
-								data: arraysecond[0],
-								name: arraysecond[6]
-							})
-						
-						}
-					})
-				})
-			}
-			catch(e){
-				alert("El fichero no es un json correcto, por favor compruebelo")
-			}
-		})
-	})
 	
 	//------------------------------------------------------------------------------------------------------
 	//------------------------PARTE PARA REALIZAR LA REGRESION A LA PESTAÑA ANTERIOR------------------------
@@ -497,7 +441,6 @@ $(document).ready(function(){
 		$("[id^='showITSGeneral']").css("display", "block")
 		$("[id^='showQAMGeneral']").css("display", "block")
 		$("[id^='showMLSGeneral']").css("display", "block")		
-		//showGeneral() 
 	})
 
 	$("#regress").on("moreInformationSCMRegress",function(event,trigger){
@@ -505,27 +448,23 @@ $(document).ready(function(){
 		$("[id^='show']").css("display", "none")
 		$("[id^='showSCMOnly']").css("display", "block")
 		$("[id^='showSCMOnlyEvent']").css("display", "none")
-		//showSCM()
 	})
 	
 	$("#regress").on("moreInformationSCMAbstractRegress",function(event,trigger){
 		$("[id^='show']").css("display", "none")
 		$("[id^='showAbstracSCM']").css("display", "block")
-		//abstractInformation(true,false,false,false,false,false)
 	})
 	
 	$("#regress").on("moreInformationSCMBusinessRegress",function(event,trigger){
 		$("[id^='show']").css("display", "none")
 		$("[id^='showBusinessSCM']").css("display", "block")
 		$("[id^='showBusinessEvent']").css("display", "none")
-		//showBusiness(true,false,false,false)
 	})
 	
 	$("#regress").on("moreInformationSCMDemographicRegress",function(event,trigger){
 		$("[id^='show']").css("display", "none")
 		$("[id^='showDemograpgicSCM']").css("display", "block")
 		$("[id^='showDemograpgicSCMRowEvent']").css("display", "none")
-		//showDemographic(true,false,false)
 	})
 	
 	$("#regress").on("moreInformationSCRRegress",function(event,trigger){
@@ -533,13 +472,11 @@ $(document).ready(function(){
 		$("[id^='show']").css("display", "none")
 		$("[id^='showSCROnly']").css("display", "block")
 		$("[id^='showSCROnlyEvent']").css("display", "none")
-		//showSCR()
 	})
 	
 	$("#regress").on("moreInformationSCRAbstractRegress",function(event,trigger){
 		$("[id^='show']").css("display", "none")
 		$("[id^='showAbstracSCR']").css("display", "block")
-		//abstractInformation(false,true,false,false,false,false)
 	})
 	
 	$("#regress").on("moreInformationITSRegress",function(event,trigger){
@@ -547,40 +484,34 @@ $(document).ready(function(){
 		$("[id^='show']").css("display", "none")
 		$("[id^='showITSOnly']").css("display", "block")
 		$("[id^='showITSOnlyEvent']").css("display", "none")
-		//showITS()
 	})
 	
 	$("#regress").on("moreInformationITSAbstractRegress",function(event,trigger){
 		$("[id^='show']").css("display", "none")
 		$("[id^='showAbstracITS']").css("display", "block")
-		//abstractInformation(false,false,true,false,false,false)
 	})
 
 	$("#regress").on("moreInformationITSusinessRegress",function(event,trigger){
 		$("[id^='show']").css("display", "none")
 		$("[id^='showBusinessITS']").css("display", "block")
 		$("[id^='showBusinessEvent']").css("display", "none")
-		//showBusiness(false,true,false)
 	})
 
 	$("#regress").on("moreInformationITSDemographicRegress",function(event,trigger){
 		$("[id^='show']").css("display", "none")
 		$("[id^='showDemograpgicITS']").css("display", "block")
 		$("[id^='showDemograpgicITSEvent']").css("display", "none")
-		//showDemographic(false,true,false)
 	})
 
 	$("#regress").on("moreInformationQAMRegress",function(event,trigger){
 		$("[id^='show']").css("display", "none")
 		$("[id^='showQAMOnly']").css("display", "block")
 		$("[id^='showQAMOnlyEvent']").css("display", "none")
-		//showQAM()
 	})
 	
 	$("#regress").on("moreInformationQAMAbstractRegress",function(event,trigger){
 		$("[id^='show']").css("display", "none")
 		$("[id^='showAbstracQAM']").css("display", "block")
-		//abstractInformation(false,false,false,true,false,false)
 	})
 	
 	$("#regress").on("moreInformationMLSRegress",function(event,trigger){
@@ -588,27 +519,23 @@ $(document).ready(function(){
 		$("[id^='show']").css("display", "none")
 		$("[id^='showMLSOnly']").css("display", "block")
 		$("[id^='showMLSOnlyEvent']").css("display", "none")
-		//showMLS()
 	})
 		
 	$("#regress").on("moreInformationMLSAbstractRegress",function(event,trigger){
 		$("[id^='show']").css("display", "none")
 		$("[id^='showAbstracMLS']").css("display", "block")
-		//abstractInformation(false,false,false,false,true,false)
 	})
 	
 	$("#regress").on("moreInformationMLSBusinessRegress",function(event,trigger){
 		$("[id^='show']").css("display", "none")
 		$("[id^='showBusinessMLS']").css("display", "block")
 		$("[id^='showBusinessEvent']").css("display", "none")
-		//showBusiness(false,false,true)
 	})
 	
 	$("#regress").on("moreInformationMLSDemographicRegress",function(event,trigger){
 		$("[id^='show']").css("display", "none")
 		$("[id^='showDemograpgicMLS']").css("display", "block")
 		$("[id^='showDemograpgicMLSEvent']").css("display", "none")
-		//showDemographic(false,false,true)
 	})
 
 	$("#regress").on("MenushowBusinessRegress",function(event,trigger){
@@ -616,7 +543,6 @@ $(document).ready(function(){
 		$("[id^='showMenuTabBusiness']").css("display", "block")
 		$("[id^='showBusiness']").css("display", "block")
 		$("[id^='showBusinessEvent']").css("display", "none")
-		//showBusiness(true,true,true)
 	})
 	
 	$("#regress").on("MenushowDemographicRegress",function(event,trigger){
@@ -626,54 +552,46 @@ $(document).ready(function(){
 		$("[id^='showDemograpgicSCMRowEvent']").css("display", "none")
 		$("[id^='showDemograpgicMLSEvent']").css("display", "none")
 		$("[id^='showDemograpgicITSEvent']").css("display", "none")
-		//showDemographic(true,true,true)
 	})
 
 	$("#regress").on("MenushowSCMRegress",function(event,trigger){
 		$("[id^='show']").css("display", "none")
 		$("[id^='showSCMOnly']").css("display", "block")
 		$("[id^='showSCMOnlyEvent']").css("display", "none")
-		//showSCM()
 	})
 
 	$("#regress").on("MenushowITSRegress",function(event,trigger){
 		$("[id^='show']").css("display", "none")
 		$("[id^='showITSOnly']").css("display", "block")
 		$("[id^='showITSOnlyEvent']").css("display", "none")
-		//showITS()
 	})
 
 	$("#regress").on("MenushowQAMRegress",function(event,trigger){
 		$("[id^='show']").css("display", "none")
 		$("[id^='showQAMOnly']").css("display", "block")
 		$("[id^='showQAMOnlyEvent']").css("display", "none")
-		//showQAM()
 	})
 
 	$("#regress").on("MenushowMLSRegress",function(event,trigger){
 		$("[id^='show']").css("display", "none")
 		$("[id^='showMLSOnly']").css("display", "block")	
 		$("[id^='showMLSOnlyEvent']").css("display", "none")
-		//showMLS()
 	})
 
 	$("#regress").on("MenushowSCRRegress",function(event,trigger){
 		$("[id^='show']").css("display", "none")
 		$("[id^='showSCROnly']").css("display", "block")
 		$("[id^='showSCROnlyEvent']").css("display", "none")
-		//showSCR()
 	})
 
 	$("#regress").on("MenuabstractRegress",function(event,trigger){
 		$("[id^='show']").css("display", "none")
 		$("[id^='showMenuTabAbstract']").css("display", "block")
 		$("[id^='showAbstrac']").css("display", "block")
-		//abstractInformation(true,true,true,true,true,true)
 	})
 
 	$("#regress").on("MenuCompInformationRegress",function(event,trigger){
 		$("[id^='show']").css("display", "none")
 		$("[id^='showCompInformation']").css("display", "block")
-		//InformationCompanies()
 	})
 })

@@ -1,19 +1,19 @@
 
-/*Funcion que pasandole la urljson, el titulo de la grafica
-y el parametros que queremos buscar, nos devuelve un array
+/*Funcion que pasandole el json, el titulo de la grafica
+y el parametro que queremos buscar, nos devuelve un array
 con lo necesariop para poder llamar a la funcion pintar
 scm-evolutionary.json 
-Entrada: urljson: scm-evolutionario.json(por ejemplo)
+Entrada: json: lo obtenio por la funcion cargarFichero()
 		titulo: titulo de la grafica
 		parametro: key del json que queremos obtener
 
-Devuelve: El array con los qsenders [0]
-          El total de los qsenders [1]
+Devuelve: El array con los datos [0]
+          El total del array [1]
 		  El titulo de la grafica [2]
 		  El eje de tiempo [3]
 		  Primer mes [4]
 		  Primer mes [5]
-		  parametro [6]
+		  El nombre del parametro [6]
 */
 function datossimples(json,titulo,parametro){
 
@@ -30,7 +30,7 @@ function datossimples(json,titulo,parametro){
 	for (var i = 0; i<auxilar.length; i++){
 		total = total + auxilar[i];
 	}
-	// Guardamos la suma de los commits
+	// Guardamos la suma
 	retorno[1] = total;
 	//Guaramos el titulo
 	retorno[2] = titulo
@@ -56,6 +56,12 @@ function datossimples(json,titulo,parametro){
 
 /*Funcion para poder obtener los datos para los graficos de
 en forma de queso, empleados en la seccion de empresas
+
+Entrada: json: lo obtenio por la funcion cargarFichero()
+		titulo: titulo de la grafica
+
+Devuelve: El array con los datos [0]
+          El total del array [1]
 */
 function datosempresapie(json, titulo){
 	retorno = [];
@@ -77,12 +83,11 @@ function datosempresapie(json, titulo){
 	retorno[1] = titulo
 	return retorno
 }
+/*Funcion para poder obtener los datos para las tablas
 
-function datostotales(array,titulo,numerografica){
-	$('#titulototales'+numerografica).append(titulo)
-	$('#numerototales'+numerografica).append(array[1])
+Entrada: json: lo obtenio por la funcion cargarFichero()
 
-}
+Devuelve: El array con los datos [0] en cada posicon tiene clave valor*/
 
 function datostabla(json){
 	retorno = [];
@@ -100,7 +105,24 @@ function datostabla(json){
 	})
 	return retorno
 }
+/*Funcion con carga de Fichero incorporada para cuando estamos
+dentro de un evento y queremos crear un chart dentro de ese evento, para el futro se perderia 
+la varible del chart creada. La cabecera incluye la urlJson, el titulo de la grafica
+y el parametro que queremos buscar, nos devuelve un array
+con lo necesariop para poder llamar a las funciones de representacion
 
+Entrada: urljson: Url de donde se encuentra el fichero JSON
+		titulo: titulo de la grafica
+		parametro: key del json que queremos obtener
+
+Devuelve: El array con los datos [0]
+          El total del array [1]
+		  El titulo de la grafica [2]
+		  El eje de tiempo [3]
+		  Primer mes [4]
+		  Primer mes [5]
+		  El nombre del parametro [6]
+*/
 function datossimplesconcargafichero(urljson,titulo,parametro){
 	retorno = [];
 	var json = (function () {
@@ -151,7 +173,18 @@ function datossimplesconcargafichero(urljson,titulo,parametro){
 	
 	return retorno
 }
-// Funcion utilizada para el tratamiento de otros tipo de fichero -companies
+/*Funcion utilizada cuando se quiere representar un graficho de Pie,
+dicha funcion obtiene como parametros el json, titulo, parametroDatos,
+y parametrosNombre
+
+Entrada: json: json con los datos
+		titulo: titulo de la grafica
+		parametro: key del json que queremos obtener
+		nombre: key para un segundo filtro
+
+Devuelve: El array con los datos [0]
+          El total del array [1]
+*/
 function datosempresapiecompanies(json, titulo,parametrodatos,parametrosnombre){
 	retorno = [];
 	contador = 0;
@@ -173,6 +206,14 @@ function datosempresapiecompanies(json, titulo,parametrodatos,parametrosnombre){
 	retorno[1] = titulo
 	return retorno
 }
+/*Funcion utilizada cuando se quiere obtener los datos para
+representar un resumen funcion obtiene como parametros el json, 
+titulo.
+
+Entrada: json: json con los datos
+
+Devuelve: El array con los datos [0]
+*/
 
 function datosresumengrafica(json){
 	retorno = [];
@@ -196,6 +237,15 @@ function datosresumengrafica(json){
 	retorno[0] = auxilar;
 	return retorno
 }
+/*Funcion utilizada cuando se quiere obtener los datos para
+rellenar una tabla. 
+
+Entrada: json: json con los datos
+		 titilo: titulo de la tabla
+
+Devuelve: El array con los datos [0]
+		  El titulo asignado [1]
+*/
 
 function datosresumentexto(json, titulo){
 	retorno = [];

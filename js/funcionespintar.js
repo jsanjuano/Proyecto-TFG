@@ -1,8 +1,11 @@
 /* Funcion para pintar donde le pasamos un array con todos los datos
 y un numero de grafica para que la pueda colocar en un div
+
 Entrada: retorno: el array devuelto por als funciones de datos
 		numerograficas: el numero del div donde queremos representarla
-		retorno2: parametro opcional, por si queremos meter dos sereies juntas*/
+		retorno2: parametro opcional, por si queremos meter dos sereies juntas
+		
+Devuelve: option: Variable entendida por HighChart*/
 		
 function pintargeneralempreaunica (retorno,numerograficas,retorno2){
 	if (retorno2 == undefined)
@@ -122,8 +125,12 @@ function pintargeneralempreaunica (retorno,numerograficas,retorno2){
 
 /* Funcion para pintar donde le pasamos un array con todos los datos
 y un numero de grafica para que la pueda colocar en un div
+
 Entrada: retorno: el array devuelto por als funciones de datos
-		numerograficas: el numero del div donde queremos representarla */
+		numerograficas: el numero del div donde queremos representarla
+		
+Devuelve: option: Variable entendida por HighChart*/
+
 function pintargeneral (retorno,numerograficas){
 	var options = {
 		chart: {   
@@ -181,6 +188,14 @@ function pintargeneral (retorno,numerograficas){
 	};
 	return options
 }
+/* Funcion para pintar empresa donde le pasamos un array con todos los datos
+y un numero de grafica para que la pueda colocar en un div
+
+Entrada: retorno: el array devuelto por als funciones de datos
+		numerograficas: el numero del div donde queremos representarla
+		
+Devuelve: option: Variable entendida por HighChart*/
+
 
 function pintarempresa (retorno,numerograficas){
 	var options = {
@@ -240,7 +255,10 @@ function pintarempresa (retorno,numerograficas){
 /* Funcion para pintar un queso utilizada para las funciones de empresa
 
 Entrada: retorno: el array devuelto por las funciones de datos
-		numerograficas: el numero del div donde queremos representarla */
+		numerograficas: el numero del div donde queremos representarla
+			
+Devuelve: option: Variable entendida por HighChart*/
+
 function pintarempesa(retorno,numerografica){
 	var options = {
 		chart: {
@@ -268,7 +286,6 @@ function pintarempesa(retorno,numerografica){
                 cursor: 'pointer',
                 events: {
                     click: function (event) {
-						alert(event.point.name)
 						empresa = event.point.name;
 						eventoempresa(empresa)
                     }
@@ -286,7 +303,9 @@ function pintarempesa(retorno,numerografica){
 /* Funcion para pintar un queso en 3d utilizada para las funciones de empresa
 
 Entrada: retorno: el array devuelto por las funciones de datos
-		numerograficas: el numero del div donde queremos representarla */
+		numerograficas: el numero del div donde queremos representarla 
+		
+Devuelve: option: Variable entendida por HighChart*/
 function pintarauthors3d(retorno,numerografica){
 
 	var options = {
@@ -306,15 +325,6 @@ function pintarauthors3d(retorno,numerografica){
 				innerSize: 100,
 				depth: 45
 			},
-/* 			series: {
-                cursor: 'pointer',
-                events: {
-                    click: function (event) {
-						empresa = event.point.name;
-						eventoempresa(empresa)
-                    }
-                }
-            } */
 		},
 		series: [{
 			name: 'Delivered amount',
@@ -325,6 +335,7 @@ function pintarauthors3d(retorno,numerografica){
 }
 
 /* Funcion para pintar una piramide de poblacion utilizada para las funciones de demografia */
+
 function pintardemografia(birth, aging,numerografica,titulo){
 	//Recogemos el valor del campo dias
 	dias = 180;
@@ -379,7 +390,12 @@ function pintargraficoqueso(retorno,numerografica){
     };
 	return options
 }
+/* Funcion para rellenar con datos una tabla.
 
+Entrada: array: array con los datos a rellenar
+		 numerografica: En este caso seria el identificador de la grafica
+		 titulo: Titulo de la tabla */
+		 
 function rellenatabla(array,numerografica,titulo){
 
 	$('#tableBody'+numerografica).empty();
@@ -397,6 +413,12 @@ function rellenatabla(array,numerografica,titulo){
 	}
 }
 
+/* Funcion para pintar el apartado Resumen.
+
+Entrada: array: array con los datos a rellenar
+		 titulo: Titulo de la tabla
+		 numerografica: En este caso seria el identificador de la grafica*/
+		 
 function pintarresumen(datos,titulo,numerografica){
 
 	var options = {
@@ -418,14 +440,4 @@ function pintarresumen(datos,titulo,numerografica){
         series: datos
     }
 	return options
-}
-
-function pintarresumentexto(datos,titulo,numerografica){
-
-	alert(datos.length)
-	for(i = 0; i < datos.length; i++) {
-		console.log(datos[i][0])
-		$('#'+numerografica).append("aaaaaa")
-	}
-
 }

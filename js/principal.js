@@ -48,7 +48,6 @@ $(document).ready(function(){
 	$("[id^='showQAMGeneral']").css("display", "block")
 	$("[id^='showMLSGeneral']").css("display", "block")
 	setTimeout(ocultar(), 3000);
-	ocultar()
 	
 	//------------------------------------------------------------------------------------------------------
 	//-------------- OCULTA EL DIV AUTOMATICAMENTE CUANDO LA PAGINA ESTA LISTA PARA SERVIR -----------------
@@ -429,7 +428,6 @@ $(document).ready(function(){
 		}		
 	})
 		
-	
 	//------------------------------------------------------------------------------------------------------
 	//------------------------PARTE PARA REALIZAR LA REGRESION A LA PESTAÑA ANTERIOR------------------------
 	//------------------------------------------------------------------------------------------------------
